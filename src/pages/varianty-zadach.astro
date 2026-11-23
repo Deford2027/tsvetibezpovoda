@@ -1,0 +1,113 @@
+---
+// ВРЕМЕННАЯ страница: 4 варианта блока «Для каких задач заказывают цветы» (Корпоративным клиентам). После выбора – перенести, страницу удалить.
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Btn from '../components/Btn.astro';
+import { img } from '../lib/img';
+import { photo } from '../lib/catalog';
+
+const title = 'Для каких задач заказывают цветы';
+const sub = 'Подберём цветы под задачу вашей компании, подготовим заказ и организуем доставку по Курску. Доставка работает ежедневно с 10:00 до 00:00.';
+const items = [
+  { title: 'Поздравить сотрудников', text: 'Цветы к личным и праздничным датам.', image: photo(17) },
+  { title: 'Поздравить клиентов и партнёров', text: 'Букеты и композиции для деловых поздравлений.', image: photo(18) },
+  { title: 'Подготовить заказ к празднику', text: 'Цветы для корпоративных поздравлений к календарным и сезонным датам.', image: photo(19) },
+  { title: 'Организовать несколько доставок', text: 'Если нужно подготовить цветы для нескольких получателей, обсудим заказ и доставку заранее.', image: photo(20) },
+];
+---
+<Base title="Варианты блока задач" noindex>
+  <section class="section container">
+    <h1 class="h2">Варианты блока «Для каких задач заказывают цветы»</h1>
+    <p class="vz-note">Временная страница для выбора, страница «Корпоративным клиентам».</p>
+  </section>
+
+  <section class="section container">
+    <p class="vz-tag">Вариант 1 · Плитки 2×2 с фото во всю плитку</p>
+    <div class="z1">
+      <div class="z1__head"><SectionHead title={title} sub={sub} /><Btn label="Обсудить заказ" href="/korporativnym-klientam#form" variant="mauve" flower /></div>
+      <ul class="z1__grid">{items.map((i) => <li><img src={img(i.image)} alt="" loading="lazy" /><span><h3 class="h3">{i.title}</h3><p>{i.text}</p></span></li>)}</ul>
+    </div>
+  </section>
+
+  <section class="section container">
+    <p class="vz-tag">Вариант 2 · Четыре высокие карточки с номерами</p>
+    <SectionHead title={title} sub={sub} center />
+    <ul class="z2">{items.map((i, n) => <li><span class="z2__ph"><img src={img(i.image)} alt="" loading="lazy" /><span class="z2__num">0{n + 1}</span></span><h3 class="h3">{i.title}</h3><p>{i.text}</p></li>)}</ul>
+  </section>
+
+  <section class="section container">
+    <p class="vz-tag">Вариант 3 · Оливковая плашка со списком</p>
+    <div class="z3 pink-card">
+      <div class="z3__head"><h2 class="h2">{title}</h2><p>{sub}</p><Btn label="Обсудить заказ" href="/korporativnym-klientam#form" variant="white" flower /></div>
+      <ol class="z3__list">{items.map((i, n) => <li><img src={img(i.image)} alt="" loading="lazy" /><span><small>0{n + 1}</small><h3 class="h3">{i.title}</h3><p>{i.text}</p></span></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="section container">
+    <p class="vz-tag">Вариант 4 · Карточки «фото + текст» 2×2</p>
+    <SectionHead title={title} sub={sub} />
+    <ul class="z4">{items.map((i) => <li><span class="z4__ph"><img src={img(i.image)} alt="" loading="lazy" /></span><span class="z4__txt"><h3 class="h3">{i.title}</h3><p>{i.text}</p></span></li>)}</ul>
+  </section>
+</Base>
+
+<style>
+  .vz-note { margin-top: 12px; font-size: 14px; color: var(--muted); }
+  .vz-tag { display: inline-block; margin-bottom: 20px; padding: 8px 14px; border-radius: 999px; background: var(--mauve); color: var(--cream); font: 600 13px/1 var(--body-font); }
+  ul, ol { list-style: none; margin: 0; padding: 0; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .h3 { font-size: clamp(21px, 1.8vw, 26px); }
+  p { font-size: 13.5px; line-height: 1.5; }
+
+  /* 1 */
+  .z1 { display: grid; grid-template-columns: 4fr 8fr; gap: 48px; align-items: start; }
+  .z1__head { position: sticky; top: 120px; display: grid; gap: 4px; justify-items: start; }
+  .z1__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .z1__grid li { position: relative; aspect-ratio: 1; border-radius: var(--radius-xl); overflow: hidden; isolation: isolate; }
+  .z1__grid img { position: absolute; inset: 0; }
+  .z1__grid li::after { content: ''; position: absolute; inset: 35% 0 0; background: linear-gradient(transparent, rgba(40, 54, 24, .82)); }
+  .z1__grid li > span { position: absolute; left: 24px; right: 24px; bottom: 22px; z-index: 1; display: grid; gap: 8px; color: #fff; }
+  .z1__grid .h3 { color: #fff; }
+
+  /* 2 */
+  .z2 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .z2 li { display: grid; align-content: start; gap: 10px; }
+  .z2__ph { position: relative; display: block; aspect-ratio: 3 / 4; margin-bottom: 12px; border-radius: var(--radius-xl); overflow: hidden; }
+  .z2__num { position: absolute; left: 16px; top: 16px; padding: 8px 14px; border-radius: 999px; background: var(--cream); color: var(--mauve); font: 600 14px/1 var(--body-font); }
+
+  /* 3 */
+  .z3 { display: grid; grid-template-columns: 5fr 7fr; gap: 56px; padding: 56px; border-radius: var(--radius-xl); align-items: center; }
+  .z3 > * { position: relative; z-index: 1; }
+  .z3__head { display: grid; gap: 20px; justify-items: start; }
+  .z3__head p { color: var(--cream); opacity: .85; font-size: 14px; }
+  .z3__list { display: grid; }
+  .z3__list li { display: grid; grid-template-columns: 96px 1fr; gap: 24px; align-items: center; padding: 18px 0; color: var(--cream); }
+  .z3__list li + li { border-top: 1px solid rgba(243, 238, 220, .2); }
+  .z3__list img { width: 96px; height: 96px; border-radius: 50%; }
+  .z3__list li > span { display: grid; gap: 6px; }
+  .z3__list small { font: 600 12px/1 var(--body-font); letter-spacing: .1em; opacity: .6; }
+  .z3__list p { opacity: .85; }
+
+  /* 4 */
+  .z4 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .z4 li { display: grid; grid-template-columns: 1fr 1fr; min-height: 280px; border-radius: var(--radius-xl); overflow: hidden; background: var(--bg-soft); }
+  .z4__ph { position: relative; display: block; }
+  .z4__ph img { position: absolute; inset: 0; }
+  .z4__txt { display: grid; align-content: center; gap: 10px; padding: 32px; }
+
+  @media (max-width: 1023px) {
+    .h3 { font-size: 19px; }
+    p { font-size: 12.5px; }
+    .z1 { grid-template-columns: 1fr; gap: 20px; }
+    .z1__head { position: static; }
+    .z1__grid { gap: 10px; }
+    .z1__grid li > span { left: 14px; right: 14px; bottom: 14px; gap: 4px; }
+    .z1__grid p { display: none; }
+    .z2 { grid-template-columns: 1fr 1fr; gap: 20px 10px; }
+    .z3 { grid-template-columns: 1fr; gap: 24px; padding: 28px 20px; }
+    .z3__list li { grid-template-columns: 64px 1fr; gap: 14px; }
+    .z3__list img { width: 64px; height: 64px; }
+    .z4 { grid-template-columns: 1fr; gap: 10px; }
+    .z4 li { min-height: 160px; grid-template-columns: 2fr 3fr; border-radius: var(--radius-l); }
+    .z4__txt { padding: 16px; gap: 6px; }
+  }
+</style>
