@@ -26,7 +26,7 @@ jobs:
       - run: npm run build
         env:
           PUBLIC_BASE: /tsvetibezpovoda
-          PUBLIC_SITE_URL: https://tema-mail.github.io/tsvetibezpovoda
+          PUBLIC_SITE_URL: https://deford2027.github.io/tsvetibezpovoda
           PUBLIC_NOINDEX: '1'
       # весь личный кабинет – за логином и паролем; без секретов шаг падает и открытая админка не публикуется
       - name: Закрыть админку логином и паролем

@@ -10,7 +10,7 @@
 - `npm run data` – заново снять товары и разделы донора (store.tildaapi.com, часть 416224245422) в `src/data/*.json`,
   картинки – webp в `public/img/p`. Адрес товара строится там же: `/catalog/<раздел>/<товар-из-названия>`.
 - Разделы-страницы и их старые адреса – `src/data/sections.json` (читают и сборщик данных, и сайт).
-- Показ: GitHub Pages `tema-mail/tsvetibezpovoda`, workflow `.github/workflows/pages.yml`, закрыт noindex.
+- Показ: GitHub Pages `Deford2027/tsvetibezpovoda` (копия оригинала tema-mail/tsvetibezpovoda от 23.11.2026), workflow `.github/workflows/pages.yml`, закрыт noindex.
 - Админка `/admin/` (стадия 1: «Страницы сайта» списком и «Заявки» с примером) – перенос кабинета Milovini; весь кабинет
   шифруется `scripts/lock-admin.mjs` после сборки (секреты Actions ADMIN_LOGIN/ADMIN_PASS, локально – ~/.config/tsvetibezpovoda).
   Других вкладок стандарта и карточек страниц на стадии 1 нет.
