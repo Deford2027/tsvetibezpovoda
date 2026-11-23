@@ -24,7 +24,7 @@
   position: absolute; display: flex; flex-direction: column; background: var(--white);
   transition: transform .38s var(--ease), opacity .3s;
 }
-.dr--right .dr__panel { top: 0; right: 0; bottom: 0; width: min(460px, 100%); transform: translateX(100%); border-radius: var(--radius-l) 0 0 28px; }
+.dr--right .dr__panel { top: 0; right: 0; bottom: 0; width: min(460px, 100%); transform: translateX(100%); border-radius: 28px 0 0 28px; }
 .dr--top .dr__panel { top: 0; left: 0; right: 0; max-height: 88vh; transform: translateY(-100%); border-radius: 0 0 28px 28px; }
 .dr--center .dr__panel { top: 50%; left: 50%; width: min(880px, calc(100% - 32px)); max-height: calc(100% - 32px); transform: translate(-50%, -46%); opacity: 0; border-radius: var(--radius-xl); overflow: hidden; }
 .dr.is-open .dr__panel { transform: none; }
@@ -40,7 +40,7 @@
 .dr--top .dr__body { max-width: 1200px; width: 100%; margin: 0 auto; }
 .dr--top .dr__head { max-width: 1256px; width: 100%; margin: 0 auto; }
 @media (max-width: 1023px) {
-  .dr--right .dr__panel { top: auto; left: 0; width: 100%; max-height: 92vh; height: 92vh; border-radius: var(--radius-l) 24px 0 0; transform: translateY(100%); }
+  .dr--right .dr__panel { top: auto; left: 0; width: 100%; max-height: 92vh; height: 92vh; border-radius: 24px 24px 0 0; transform: translateY(100%); }
   .dr__head { padding: 18px 16px 12px; }
   .dr__body { padding: 4px 16px 20px; }
   .dr__foot { padding: 14px 16px calc(14px + env(safe-area-inset-bottom)); }
