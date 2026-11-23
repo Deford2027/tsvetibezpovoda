@@ -1,36 +1,52 @@
 ---
-// Плитки разделов каталога в рамке: название + фото букета.
+// Плитки разделов каталога: фото букета во всю плитку, снизу на затемнении – название, число букетов и стрелка
+// (вариант 1, выбран владельцем 23.11.2026). У каждой плитки своё фото – первый товар раздела с ещё не занятым фото.
 import SectionHead from './SectionHead.astro';
-import { img } from '../lib/img';
 import { u } from '../lib/url';
 import { CATEGORY_TILES } from '../lib/site';
-import { products } from '../lib/catalog';
+import { products, inPart } from '../lib/catalog';
 const { title, sub, limit = 10, scroll = false } = Astro.props as { title?: string; sub?: string; limit?: number; scroll?: boolean };
-const items = CATEGORY_TILES.slice(0, limit).map((c) => ({ ...c, image: products.find((p) => p.parts.includes(c.part) && p.images.length)?.images[0] ?? '' }));
+const used = new Set<string>();
+const items = CATEGORY_TILES.slice(0, limit).map((c) => {
+  const inCat = products.filter((p) => inPart(p, c.part) && p.images.length);
+  const image = (inCat.find((p) => !used.has(p.images[0])) ?? inCat[0])?.images[0] ?? '';
+  used.add(image);
+  return { ...c, image, count: inCat.length };
+});
+const word = (n: number) => (n % 10 === 1 && n % 100 !== 11 ? 'букет' : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 'букета' : 'букетов');
 ---
 <section class="section">
   {title && <div class="container"><SectionHead title={title} sub={sub} /></div>}
   <div class:list={['ct', scroll ? 'ct--scroll hscroll' : 'container ct--grid']}>
     {items.map((c) => (
       <a class="ct__tile" href={u(c.href)}>
-        <span class="ct__title">{c.title}</span>
         <img src={u(c.image + '-480.webp')} alt="" loading="lazy" />
+        <span class="ct__body"><span class="ct__title">{c.title}</span>{c.count > 0 && <span class="ct__count">{c.count} {word(c.count)}</span>}</span>
+        <span class="ct__arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
       </a>
     ))}
   </div>
 </section>
 <style>
   .ct--grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  .ct--scroll { gap: 20px; padding: 0 max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); }
-  .ct--scroll .ct__tile { width: 300px; }
-  .ct__tile { position: relative; display: flex; flex-direction: column; height: 320px; border: 1px solid var(--mauve); border-radius: 20px; overflow: hidden; background: #fff; transition: box-shadow .25s, transform .25s var(--ease); }
-  .ct__tile:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
-  .ct__title { padding: 26px 28px 0; font: 400 clamp(22px, 2.4vw, 34px)/1.05 var(--head-font); color: var(--mauve); }
-  .ct__tile img { margin-top: auto; width: 100%; height: 66%; object-fit: contain; object-position: bottom center; }
+  .ct--scroll { --pad: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); gap: 20px; padding: 0 var(--pad); scroll-padding-inline: var(--pad); }
+  .ct--scroll .ct__tile { flex: none; width: 300px; }
+  .ct__tile { position: relative; display: block; aspect-ratio: 4 / 5; border-radius: var(--radius-xl); overflow: hidden; background: var(--bg-soft); isolation: isolate; }
+  .ct__tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+  .ct__tile::after { content: ''; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, rgba(40, 54, 24, .78)); }
+  .ct__tile:hover img { transform: scale(1.05); }
+  .ct__body { position: absolute; left: 24px; right: 76px; bottom: 22px; z-index: 1; display: grid; gap: 6px; color: #fff; }
+  .ct__title { font: 400 clamp(22px, 2vw, 30px)/1.05 var(--head-font); }
+  .ct__count { font-size: 13px; opacity: .85; }
+  .ct__arrow { position: absolute; right: 20px; bottom: 22px; z-index: 1; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: var(--cream); color: var(--mauve); transition: transform .25s var(--ease); }
+  .ct__tile:hover .ct__arrow { transform: translateX(3px); }
   @media (max-width: 1023px) {
     .ct--grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .ct__tile { height: 200px; border-radius: 16px; }
+    .ct--scroll { gap: 10px; }
     .ct--scroll .ct__tile { width: 200px; }
-    .ct__title { padding: 14px 16px 0; font-size: 19px; }
+    .ct__body { left: 14px; right: 14px; bottom: 14px; gap: 4px; }
+    .ct__title { font-size: 19px; }
+    .ct__count { font-size: 12px; }
+    .ct__arrow { display: none; }
   }
 </style>
