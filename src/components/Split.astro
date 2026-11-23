@@ -28,9 +28,9 @@ const { title, html, image, buttons = [], social = false, reverse = false, id } 
 <style>
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: stretch; }
   .split--rev .split__photo { order: 2; }
-  .split__photo { border-radius: var(--radius-xl); overflow: hidden; min-height: 560px; background: var(--bg-soft); }
-  .split__photo img { width: 100%; height: 100%; object-fit: cover; }
-  .split__body { display: flex; flex-direction: column; gap: 28px; padding: 8px 0; }
+  .split__photo { position: relative; border-radius: var(--radius-xl); overflow: hidden; min-height: 560px; background: var(--bg-soft); }
+  .split__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .split__body { display: flex; flex-direction: column; justify-content: center; gap: 28px; padding: 8px 0; }
   .split__html { display: grid; gap: 14px; font-size: 14px; max-width: 520px; }
   .split__html :global(ul) { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
   .split__html :global(b) { color: var(--ink); font-weight: 600; }
