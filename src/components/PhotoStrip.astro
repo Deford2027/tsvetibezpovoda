@@ -1,17 +1,33 @@
 ---
-// Лента фотографий со стрелками («Отвечаем за качество цветов»).
+// Лента фотографий «Отвечаем за качество цветов» – медленно едет по кругу (владелец 23.11.2026).
+// Фото повторены дважды, лента сдвигается на половину – стык не виден. Наведение – пауза; «меньше движения» в системе – обычная прокрутка.
 import SectionHead from './SectionHead.astro';
 import { img } from '../lib/img';
-const { title, sub, images } = Astro.props as { title: string; sub?: string; images: string[] };
+const { title, sub, images, speed = 60 } = Astro.props as { title: string; sub?: string; images: string[]; speed?: number };
 ---
 <section class="section ps">
   <div class="container"><SectionHead title={title} sub={sub} /></div>
-  <div class="ps__track hscroll">
-    {images.map((s) => <img src={img(s, 800)} alt="" loading="lazy" />)}
+  <div class="ps__viewport">
+    <div class="ps__track" style={`--dur: ${speed}s`}>
+      {[...images, ...images].map((s, i) => <img src={img(s, 800)} alt="" loading={i < images.length ? 'lazy' : 'eager'} aria-hidden={i >= images.length ? 'true' : undefined} />)}
+    </div>
   </div>
 </section>
 <style>
-  .ps__track { gap: 20px; padding: 0 max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); }
-  .ps__track img { width: 335px; height: 420px; object-fit: cover; border-radius: 24px; }
-  @media (max-width: 1023px) { .ps__track { gap: 10px; } .ps__track img { width: 70vw; height: 88vw; max-width: 300px; max-height: 380px; border-radius: 18px; } }
+  .ps__viewport { overflow: hidden; }
+  .ps__track { display: flex; gap: 20px; width: max-content; animation: ps-run var(--dur) linear infinite; }
+  .ps__viewport:hover .ps__track { animation-play-state: paused; }
+  .ps__track img { flex: none; width: 335px; height: 420px; object-fit: cover; border-radius: var(--radius-xl); }
+  /* сдвиг ровно на один набор фото (половина ленты вместе с половиной промежутков) */
+  @keyframes ps-run { to { transform: translateX(calc(-50% - 10px)); } }
+  @media (max-width: 1023px) {
+    .ps__track { gap: 10px; }
+    @keyframes ps-run { to { transform: translateX(calc(-50% - 5px)); } }
+    .ps__track img { width: 62vw; height: 78vw; max-width: 300px; max-height: 380px; border-radius: var(--radius-l); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ps__viewport { overflow-x: auto; scrollbar-width: none; }
+    .ps__track { animation: none; padding: 0 var(--gutter); }
+    .ps__track img[aria-hidden] { display: none; }
+  }
 </style>
