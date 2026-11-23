@@ -11,6 +11,7 @@
   --text: #4d4d45;
   --muted: #939598;
   --line: #e2e0d5;
+  --stroke: #d6d2bd; /* лёгкая обводка карточек, кнопок и полей (23.11.2026: вместо оливковой и чёрной) */
   --bg-soft: #f6f5ef;
   --beige: #606c38;
   --white: #fff;
@@ -73,7 +74,7 @@ p { margin: 0; }
 .btn--pink:hover { background: var(--pink-deep); }
 .btn--mauve { background: var(--mauve); color: var(--white); }
 .btn--mauve:hover { background: var(--mauve-dark); }
-.btn--outline { border-color: var(--mauve); color: var(--mauve); background: transparent; }
+.btn--outline { border-color: var(--stroke); color: var(--mauve); background: transparent; }
 .btn--outline:hover { background: var(--mauve); color: var(--white); }
 .btn--sm { --h: 48px; padding: 0 22px; font-size: 13px; }
 .btn--block { width: 100%; }
@@ -81,20 +82,20 @@ p { margin: 0; }
 
 .chip {
   display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 18px;
-  border: 1px solid var(--mauve); border-radius: var(--radius-m); color: var(--mauve); background: transparent;
+  border: 1px solid var(--stroke); border-radius: var(--radius-m); color: var(--mauve); background: transparent;
   font: 500 13px/1 var(--body-font); white-space: nowrap; transition: background-color .2s, color .2s;
 }
 .chip:hover { background: var(--pink-soft); }
-.chip.is-active, .chip[aria-pressed='true'] { background: var(--mauve); color: var(--white); }
+.chip.is-active, .chip[aria-pressed='true'] { background: var(--mauve); border-color: var(--mauve); color: var(--white); }
 
 .badge {
   display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 16px;
-  border: 1px solid var(--mauve); border-radius: 999px; color: var(--mauve); font-size: 14px;
+  border: 1px solid var(--stroke); border-radius: 999px; color: var(--mauve); font-size: 14px;
 }
 
 .icon-btn {
   position: relative; display: inline-grid; place-items: center; width: 46px; height: 46px;
-  border: 1px solid var(--ink); border-radius: 50%; background: var(--white); color: var(--ink);
+  border: 1px solid var(--stroke); border-radius: 50%; background: var(--white); color: var(--ink);
   transition: background-color .2s, color .2s;
 }
 .icon-btn:hover { background: var(--pink-soft); }
@@ -119,7 +120,7 @@ p { margin: 0; }
 .pink-card::before { top: -40px; left: -40px; }
 .pink-card::after { right: 40px; bottom: -70px; }
 
-.outline-card { border: 1px solid var(--mauve); border-radius: var(--radius-l); background: var(--white); }
+.outline-card { border: 1px solid var(--stroke); border-radius: var(--radius-l); background: var(--white); }
 
 /* Горизонтальная лента на телефоне */
 .hscroll { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }

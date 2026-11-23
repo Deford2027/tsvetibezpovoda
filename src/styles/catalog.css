@@ -48,7 +48,7 @@
 .cat__chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .cat__chips--sub { margin-top: -6px; }
 .chip--sm { height: 32px; font-size: 12px; padding: 0 14px; }
-.chip--ghost { border-color: var(--line); color: var(--ink); }
+.chip--ghost { border-color: var(--stroke); color: var(--ink); }
 .chip--ghost.is-active { background: var(--ink); border-color: var(--ink); color: #fff; }
 .cat__bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 14px; }
 .cat__prices { display: flex; flex-wrap: wrap; gap: 8px; }
