@@ -3,6 +3,7 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Split from '../components/Split.astro';
+import AboutCollage from '../components/AboutCollage.astro';
 import IconCards from '../components/IconCards.astro';
 import CategoryTiles from '../components/CategoryTiles.astro';
 import PinkCta from '../components/PinkCta.astro';
@@ -22,10 +23,9 @@ import { photo } from '../lib/catalog';
     buttons={[{ label: 'Выбрать букет', href: '/catalog' }, { label: 'Помогите выбрать', lead: true }]}
     features
   />
-  <Split
-    reverse
+  <AboutCollage
     title="Цветы, к которым относимся с вниманием"
-    image={photo(13)}
+    images={[photo(64), photo(66), photo(48)]}
     html={`<p>«${SITE.name}» – цветочный салон в Курске. Наша студия – на ул. Ленина, 74, открыта ежедневно с 10:00 до 22:00.</p><p>В каталоге – сборные букеты, монобукеты, композиции и премиум-букеты. Хиты и акции собраны в отдельные разделы, чтобы выбрать было проще.</p>`}
     buttons={[{ label: 'Выбрать букет', href: '/catalog' }, { label: 'Помогите выбрать', lead: true }]}
   />

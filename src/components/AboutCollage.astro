@@ -1,0 +1,36 @@
+---
+// Текст слева, справа коллаж из трёх фото (одно большое, два друг над другом). Выбран владельцем 23.11.2026 для «О компании».
+import Btn, { type BtnProps } from './Btn.astro';
+import { img, srcset } from '../lib/img';
+const { title, html, images, buttons = [] } = Astro.props as { title: string; html: string; images: [string, string, string]; buttons?: BtnProps[] };
+---
+<section class="section container ac">
+  <div class="ac__body reveal">
+    <h2 class="h2" set:html={title.replace(/\n/g, '<br />')} />
+    <div class="ac__html" set:html={html} />
+    {buttons.length > 0 && <div class="ac__btns">{buttons.map((b, i) => <Btn {...b} variant={b.variant ?? (i === 0 ? 'pink' : 'outline')} flower={b.flower ?? i === 0} />)}</div>}
+  </div>
+  <div class="ac__grid reveal">
+    {images.map((src, i) => (
+      <div class:list={['ac__ph', { 'ac__ph--big': i === 0 }]}>
+        <img src={img(src)} srcset={srcset(src)} sizes={i === 0 ? '(max-width: 1023px) 60vw, 35vw' : '(max-width: 1023px) 40vw, 25vw'} alt="" loading="lazy" />
+      </div>
+    ))}
+  </div>
+</section>
+<style>
+  .ac { display: grid; grid-template-columns: 5fr 7fr; gap: 60px; align-items: center; }
+  .ac__body { display: grid; gap: 18px; max-width: 520px; }
+  .ac__html { display: grid; gap: 14px; font-size: 14px; }
+  .ac__btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+  .ac__grid { display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; height: 600px; }
+  .ac__ph { position: relative; border-radius: var(--radius-xl); overflow: hidden; background: var(--bg-soft); }
+  .ac__ph--big { grid-row: span 2; }
+  .ac__ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 1023px) {
+    .ac { grid-template-columns: 1fr; gap: 24px; }
+    .ac__grid { order: -1; height: 360px; gap: 10px; }
+    .ac__btns { flex-direction: column; margin-top: 4px; }
+    .ac__btns :global(.btn) { width: 100%; }
+  }
+</style>
