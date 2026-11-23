@@ -1,0 +1,30 @@
+---
+// Карта Яндекса через JS API 2.1 (без рекламного баннера, в отличие от виджета map-widget). Метка – студия на ул. Ленина, 74.
+// API грузится один раз, когда карта подъезжает к экрану. Координаты – с карточки организации на Яндекс Картах (oid 137449738710).
+// ТЕХДОЛГ: по условиям Яндекса нужен бесплатный ключ JS API (developer.tech.yandex.ru) – подставить в KEY.
+const KEY = '';
+const { zoom = 16 } = Astro.props as { zoom?: number };
+---
+<div class="ym" data-ym data-zoom={zoom} data-key={KEY}></div>
+<script>
+  const C = [51.744454, 36.193525];
+  let loading: Promise<void> | null = null;
+  const load = (key: string) => loading ??= new Promise<void>((res) => {
+    const s = document.createElement('script');
+    s.src = `https://api-maps.yandex.ru/2.1/?lang=ru_RU${key ? `&apikey=${key}` : ''}`;
+    s.onload = () => (window as any).ymaps.ready(() => res());
+    document.head.append(s);
+  });
+  const draw = async (el: HTMLElement) => {
+    await load(el.dataset.key || '');
+    const ymaps = (window as any).ymaps;
+    const map = new ymaps.Map(el, { center: C, zoom: Number(el.dataset.zoom) || 16, controls: ['zoomControl'] }, { suppressMapOpenBlock: false });
+    map.behaviors.disable('scrollZoom');
+    map.geoObjects.add(new ymaps.Placemark(C, { hintContent: 'Цветы без повода', balloonContent: 'Курск, ул. Ленина, 74' }, { preset: 'islands#darkGreenDotIcon' }));
+  };
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { io.unobserve(e.target); draw(e.target as HTMLElement); } }), { rootMargin: '300px' });
+  document.querySelectorAll<HTMLElement>('[data-ym]').forEach((el) => io.observe(el));
+</script>
+<style>
+  .ym { width: 100%; height: 100%; min-height: inherit; background: var(--bg-soft); }
+</style>

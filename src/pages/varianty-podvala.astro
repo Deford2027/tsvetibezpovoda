@@ -1,0 +1,150 @@
+---
+// ВРЕМЕННАЯ страница: 4 варианта блока контактов с картой (низ всех страниц) на выбор владельцу. После выбора – в ContactCard.astro, страницу удалить.
+import Base from '../layouts/Base.astro';
+import YaMap from '../components/YaMap.astro';
+import { SITE, SOCIALS, FOOTER } from '../lib/site';
+import { u } from '../lib/url';
+import { IconFlower, Social } from '../islands/icons';
+import { icoSvg } from '../lib/icons';
+
+const pin = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>';
+const phone = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>';
+const rows = [
+  { ico: phone, label: 'Телефон', value: SITE.phone, href: SITE.phoneHref },
+  { ico: pin, label: 'Адрес', value: `${SITE.city}, ${SITE.address}` },
+  { ico: icoSvg('clock'), label: 'Режим работы', value: SITE.hours },
+];
+const route = 'https://yandex.ru/maps/org/137449738710/';
+---
+<Base title="Варианты подвала" noindex>
+  <section class="section container">
+    <h1 class="h2">Варианты блока контактов с картой</h1>
+    <p class="vf-note">Временная страница для выбора. Во всех вариантах – новая карта Яндекса без рекламы, с меткой на ул. Ленина, 74 в Курске.</p>
+  </section>
+
+  <!-- 1 -->
+  <section class="section container">
+    <p class="vf-tag">Вариант 1 · Карта во всю ширину, контакты поверх</p>
+    <div class="f1">
+      <div class="f1__map"><YaMap /></div>
+      <div class="f1__card">
+        <h2 class="f-title">{SITE.name}</h2>
+        <ul class="f-rows">{rows.map((r) => <li><span class="f-ico" set:html={r.ico} /><span><small>{r.label}</small>{r.href ? <a href={r.href}>{r.value}</a> : <b>{r.value}</b>}</span></li>)}</ul>
+        <div class="f-btns"><a class="btn btn--mauve" href={u('/catalog')}>Выбрать букет <IconFlower /></a>{SOCIALS.map((s) => <a class="f-soc" href={s.href} target="_blank" rel="noopener" aria-label={s.label}><Social id={s.id} size={18} /></a>)}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="section container">
+    <p class="vf-tag">Вариант 2 · Оливковая карточка и карта</p>
+    <div class="f2">
+      <div class="f2__card pink-card">
+        <h2 class="f-title">{SITE.name}</h2>
+        <ul class="f-rows f-rows--light">{rows.map((r) => <li><span class="f-ico" set:html={r.ico} /><span><small>{r.label}</small>{r.href ? <a href={r.href}>{r.value}</a> : <b>{r.value}</b>}</span></li>)}</ul>
+        <div class="f-btns"><a class="btn btn--white" href={u('/catalog')}>Выбрать букет <IconFlower /></a>{SOCIALS.map((s) => <a class="f-soc f-soc--light" href={s.href} target="_blank" rel="noopener" aria-label={s.label}><Social id={s.id} size={18} /></a>)}</div>
+      </div>
+      <div class="f2__map"><YaMap /><a class="f-route" href={route} target="_blank" rel="noopener">Построить маршрут</a></div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="section container">
+    <p class="vf-tag">Вариант 3 · Три плашки и широкая карта</p>
+    <div class="f3">
+      <div class="f3__head"><h2 class="h2">Приезжайте или закажите доставку</h2><div class="f-btns"><a class="btn btn--mauve" href={u('/catalog')}>Выбрать букет <IconFlower /></a>{SOCIALS.map((s) => <a class="f-soc" href={s.href} target="_blank" rel="noopener" aria-label={s.label}><Social id={s.id} size={18} /></a>)}</div></div>
+      <ul class="f3__cards">{rows.map((r) => <li><span class="f-ico" set:html={r.ico} /><small>{r.label}</small>{r.href ? <a href={r.href}>{r.value}</a> : <b>{r.value}</b>}</li>)}</ul>
+      <div class="f3__map"><YaMap /></div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="section container">
+    <p class="vf-tag">Вариант 4 · Контакты, карта и меню одним подвалом</p>
+    <div class="f4 pink-card">
+      <div class="f4__top">
+        <div class="f4__info">
+          <h2 class="f-title">{SITE.name}</h2>
+          <ul class="f-rows f-rows--light">{rows.map((r) => <li><span class="f-ico" set:html={r.ico} /><span><small>{r.label}</small>{r.href ? <a href={r.href}>{r.value}</a> : <b>{r.value}</b>}</span></li>)}</ul>
+          <div class="f-btns"><a class="btn btn--white" href={u('/catalog')}>Выбрать букет <IconFlower /></a>{SOCIALS.map((s) => <a class="f-soc f-soc--light" href={s.href} target="_blank" rel="noopener" aria-label={s.label}><Social id={s.id} size={18} /></a>)}</div>
+        </div>
+        <div class="f4__map"><YaMap /></div>
+      </div>
+      <div class="f4__cols">
+        {[['Меню', FOOTER.menu], ['Каталог', FOOTER.catalog], ['Покупателям', FOOTER.buyers]].map(([t, items]: any) => <nav><p>{t}</p><ul>{items.slice(0, 6).map((i: any) => <li><a href={u(i.href)}>{i.label}</a></li>)}</ul></nav>)}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .vf-note { margin-top: 12px; font-size: 14px; color: var(--muted); }
+  .vf-tag { display: inline-block; margin-bottom: 20px; padding: 8px 14px; border-radius: 999px; background: var(--mauve); color: var(--cream); font: 600 13px/1 var(--body-font); }
+  ul { list-style: none; margin: 0; padding: 0; }
+  .f-title { font: 500 clamp(28px, 2.8vw, 40px)/1.1 var(--head-font); color: var(--mauve); }
+  .f-rows { display: grid; gap: 18px; }
+  .f-rows li { display: flex; align-items: center; gap: 16px; }
+  .f-rows li > span:last-child { display: grid; gap: 4px; }
+  .f-rows small, .f3__cards small { font-size: 13px; color: var(--muted); }
+  .f-rows b, .f-rows a { font: 400 clamp(18px, 1.6vw, 22px)/1.25 var(--body-font); color: var(--ink); }
+  .f-ico { flex: none; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; background: var(--mauve); color: var(--cream); }
+  .f-btns { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .f-soc { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; background: var(--pink); color: var(--mauve); transition: background-color .2s, color .2s; }
+  .f-soc:hover { background: var(--mauve); color: var(--cream); }
+  .f-rows--light small { color: var(--cream); opacity: .7; }
+  .f-rows--light b, .f-rows--light a { color: var(--cream); }
+  .f-rows--light .f-ico { background: rgba(243, 238, 220, .12); }
+  .pink-card .f-title { color: var(--cream); }
+  .f-soc--light { background: rgba(243, 238, 220, .12); color: var(--cream); }
+  .f-soc--light:hover { background: var(--cream); color: var(--mauve); }
+  .f-route { position: absolute; left: 16px; bottom: 16px; z-index: 2; padding: 12px 18px; border-radius: 999px; background: var(--mauve); color: var(--cream); font: 600 14px/1 var(--body-font); box-shadow: var(--shadow); }
+
+  /* 1 */
+  .f1 { position: relative; }
+  .f1__map { height: 560px; border-radius: var(--radius-xl); overflow: hidden; }
+  .f1__card { position: absolute; left: 32px; top: 32px; bottom: 32px; width: 440px; display: grid; align-content: center; gap: 28px; padding: 40px; border-radius: var(--radius-xl); background: #fff; box-shadow: var(--shadow); }
+
+  /* 2 */
+  .f2 { display: grid; grid-template-columns: 5fr 7fr; gap: 20px; }
+  .f2__card { display: grid; align-content: center; gap: 30px; padding: 48px; border-radius: var(--radius-xl); }
+  .f2__card > * { position: relative; z-index: 1; }
+  .f2__map { position: relative; min-height: 520px; border-radius: var(--radius-xl); overflow: hidden; }
+
+  /* 3 */
+  .f3 { display: grid; gap: 20px; }
+  .f3__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 20px; }
+  .f3__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .f3__cards li { display: grid; gap: 6px; padding: 24px; border-radius: var(--radius-xl); background: var(--bg-soft); }
+  .f3__cards .f-ico { margin-bottom: 14px; }
+  .f3__cards b, .f3__cards a { font: 400 clamp(19px, 1.7vw, 24px)/1.25 var(--body-font); color: var(--ink); }
+  .f3__map { height: 420px; border-radius: var(--radius-xl); overflow: hidden; }
+
+  /* 4 */
+  .f4 { display: grid; gap: 48px; padding: 48px; border-radius: var(--radius-xl); }
+  .f4 > * { position: relative; z-index: 1; }
+  .f4__top { display: grid; grid-template-columns: 5fr 7fr; gap: 48px; align-items: center; }
+  .f4__info { display: grid; gap: 28px; }
+  .f4__map { height: 420px; border-radius: var(--radius-l); overflow: hidden; }
+  .f4__cols { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 24px 80px; padding-top: 36px; border-top: 1px solid rgba(243, 238, 220, .2); }
+  .f4__cols p { margin-bottom: 14px; font: 600 12px/1 var(--body-font); letter-spacing: .12em; text-transform: uppercase; color: var(--cream); opacity: .7; }
+  .f4__cols ul { display: grid; gap: 10px; }
+  .f4__cols a { color: var(--cream); font-size: 14px; }
+
+  @media (max-width: 1023px) {
+    .f-btns .btn { flex: 1 1 100%; }
+    .f1__map { height: 300px; }
+    .f1__card { position: relative; inset: auto; width: auto; margin: -40px 12px 0; padding: 24px 20px; gap: 20px; }
+    .f2 { grid-template-columns: 1fr; gap: 10px; }
+    .f2__card { padding: 28px 20px; gap: 22px; }
+    .f2__map { min-height: 300px; }
+    .f3__head { flex-direction: column; align-items: flex-start; margin-bottom: 4px; }
+    .f3__cards { grid-template-columns: 1fr; gap: 10px; }
+    .f3__cards li { grid-template-columns: 48px 1fr; column-gap: 14px; row-gap: 2px; padding: 16px; }
+    .f3__cards .f-ico { grid-row: span 2; margin: 0; }
+    .f3__map { height: 300px; }
+    .f4 { padding: 28px 20px; gap: 28px; }
+    .f4__top { grid-template-columns: 1fr; gap: 24px; }
+    .f4__map { height: 280px; }
+    .f4__cols { grid-template-columns: 1fr 1fr; gap: 24px; }
+  }
+</style>
