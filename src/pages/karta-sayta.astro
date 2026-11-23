@@ -20,28 +20,52 @@ const pages = [
 ];
 ---
 <Base title={`Карта сайта – ${SITE.name}`} description={`Все разделы и букеты сайта «${SITE.name}».`}>
-  <article class="container km">
+  <section class="container km">
     <Crumbs items={[{ label: 'Главная', href: '/' }, { label: 'Карта сайта' }]} />
     <h1 class="h1">Карта сайта</h1>
-    <ul>
+
+    <h2 class="km__h">Страницы</h2>
+    <ul class="km__pages">
       <li><a href={u('/')}>Главная</a></li>
-      <li><a href={u('/catalog')}>Каталог</a>
-        <ul>
-          {CATALOGS.map((c) => (
-            <li><a href={u(`/catalog/${c.slug}`)}>{c.title}</a>
-              <ul>{live.filter((p) => p.path.startsWith(`/catalog/${c.slug}/`)).map((p) => <li><a href={u(p.path)}>{p.title}</a></li>)}</ul>
-            </li>
-          ))}
-          {loose.map((p) => <li><a href={u(p.path)}>{p.title}</a></li>)}
-        </ul>
-      </li>
+      <li><a href={u('/catalog')}>Каталог цветов</a></li>
       {pages.map((p) => <li><a href={u(p.href)}>{p.label}</a></li>)}
     </ul>
-  </article>
+
+    <h2 class="km__h">Каталог</h2>
+    <div class="km__cats">
+      {[...CATALOGS.map((c) => ({ title: c.title, href: `/catalog/${c.slug}`, items: live.filter((p) => p.path.startsWith(`/catalog/${c.slug}/`)) })),
+        ...(loose.length ? [{ title: 'Другие букеты', href: '/catalog', items: loose }] : [])]
+        .filter((c) => c.items.length).map((c) => (
+        <div class="km__cat">
+          <a class="km__cat-head" href={u(c.href)}><span>{c.title}</span><small>{c.items.length}</small></a>
+          <ul>{c.items.map((p) => <li><a href={u(p.path)}>{p.title}</a></li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </section>
 </Base>
 <style>
-  .km { max-width: 960px; padding-top: 24px; display: grid; gap: 24px; }
-  ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--ink); }
-  li > ul { margin-top: 6px; }
-  a:hover { color: var(--mauve); text-decoration: underline; }
+  .km { padding-top: 24px; display: grid; gap: 20px; }
+  .km__h { margin-top: 28px; font: 400 clamp(26px, 2.6vw, 36px)/1.1 var(--head-font); color: var(--mauve); }
+  ul { list-style: none; margin: 0; padding: 0; }
+  .km__pages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .km__pages a { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 100%; padding: 18px 20px; border-radius: var(--radius-l); background: var(--bg-soft); color: var(--ink); font-size: 15px; transition: background-color .2s; }
+  .km__pages a::after { content: '→'; color: var(--mauve); }
+  .km__pages a:hover { background: var(--pink); }
+  .km__cats { display: grid; gap: 16px; }
+  .km__cat { padding: 24px 28px; border: 1px solid var(--stroke); border-radius: var(--radius-xl); }
+  .km__cat-head { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 16px; font: 400 clamp(22px, 2vw, 28px)/1.1 var(--head-font); color: var(--mauve); }
+  .km__cat-head small { padding: 5px 10px; border-radius: 999px; background: var(--mauve); color: var(--cream); font: 600 12px/1 var(--body-font); }
+  .km__cat-head:hover span { text-decoration: underline; text-underline-offset: 4px; }
+  .km__cat ul { columns: 4; column-gap: 28px; }
+  .km__cat li { break-inside: avoid; padding: 4px 0; font-size: 14px; }
+  .km__cat li a { color: var(--text); }
+  .km__cat li a:hover { color: var(--mauve); text-decoration: underline; }
+  @media (max-width: 1023px) {
+    .km__pages { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .km__pages a { padding: 14px; font-size: 13.5px; }
+    .km__cat { padding: 18px 16px; border-radius: var(--radius-l); }
+    .km__cat ul { columns: 2; column-gap: 16px; }
+    .km__cat li { font-size: 13px; }
+  }
 </style>
