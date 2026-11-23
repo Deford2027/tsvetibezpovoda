@@ -1,0 +1,39 @@
+---
+// Этапы с фото: высокое фото с номером «01…» в углу, под ним заголовок и текст, без рамок.
+// «Гарантии» – «От цветов до готового букета» (владелец 23.11.2026: «немного красивее»).
+import SectionHead from './SectionHead.astro';
+import { img, srcset } from '../lib/img';
+const { title, sub, items } = Astro.props as { title?: string; sub?: string; items: { title: string; text?: string; image: string }[] };
+---
+<section class="section container">
+  {title && <SectionHead title={title} sub={sub} />}
+  <ol class="sp">
+    {items.map((i, n) => (
+      <li class="reveal">
+        <span class="sp__ph">
+          <img src={img(i.image)} srcset={srcset(i.image)} sizes="(max-width: 1023px) 50vw, 25vw" alt="" loading="lazy" />
+          <span class="sp__num">{String(n + 1).padStart(2, '0')}</span>
+        </span>
+        <h3 class="h3 sp__title">{i.title}</h3>
+        {i.text && <p class="sp__text">{i.text}</p>}
+      </li>
+    ))}
+  </ol>
+</section>
+<style>
+  .sp { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .sp li { display: grid; align-content: start; gap: 10px; }
+  .sp__ph { position: relative; display: block; aspect-ratio: 3 / 4; margin-bottom: 12px; border-radius: var(--radius-xl); overflow: hidden; background: var(--bg-soft); }
+  .sp__ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+  .sp li:hover .sp__ph img { transform: scale(1.04); }
+  .sp__num { position: absolute; left: 16px; top: 16px; padding: 8px 14px; border-radius: 999px; background: var(--cream); color: var(--mauve); font: 600 14px/1 var(--body-font); }
+  .sp__title { font-size: clamp(21px, 1.8vw, 26px); }
+  .sp__text { font-size: 13.5px; line-height: 1.5; }
+  @media (max-width: 1023px) {
+    .sp { grid-template-columns: 1fr 1fr; gap: 24px 10px; }
+    .sp__ph { margin-bottom: 6px; border-radius: var(--radius-l); }
+    .sp__num { left: 10px; top: 10px; padding: 6px 10px; font-size: 12px; }
+    .sp__title { font-size: 19px; }
+    .sp__text { font-size: 12.5px; }
+  }
+</style>
