@@ -36,8 +36,9 @@ export const IconTrash = () => (
 /** Цветок-иконка на кнопках «Выбрать букет» – как на оригинале. */
 export const IconFlower = ({ size = 18 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">
-    <g style={{ fill: 'var(--flower, #434730)' }}><circle cx="12" cy="6.5" r="4.5" /><circle cx="17.2" cy="10.3" r="4.5" /><circle cx="15.2" cy="16.5" r="4.5" /><circle cx="8.8" cy="16.5" r="4.5" /><circle cx="6.8" cy="10.3" r="4.5" /></g>
-    <circle cx="12" cy="12" r="2.6" fill="#fff" />
+    {/* середина – вырез маской, а не белый круг: на любой кнопке видна в цвет её фона */}
+    <mask id="flower-hole"><rect width="24" height="24" fill="#fff" /><circle cx="12" cy="12" r="2.6" fill="#000" /></mask>
+    <g mask="url(#flower-hole)" style={{ fill: 'var(--flower, #434730)' }}><circle cx="12" cy="6.5" r="4.5" /><circle cx="17.2" cy="10.3" r="4.5" /><circle cx="15.2" cy="16.5" r="4.5" /><circle cx="8.8" cy="16.5" r="4.5" /><circle cx="6.8" cy="10.3" r="4.5" /></g>
   </svg>
 );
 
