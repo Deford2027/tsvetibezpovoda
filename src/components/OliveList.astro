@@ -1,0 +1,46 @@
+---
+// Оливковая плашка: слева заголовок, подводка и кнопка, справа нумерованный список с круглыми фото.
+// Выбрана владельцем 23.11.2026 для «Для каких задач заказывают цветы» (Корпоративным клиентам).
+import Btn, { type BtnProps } from './Btn.astro';
+import { img } from '../lib/img';
+const { title, text, button, items } = Astro.props as { title: string; text?: string; button?: BtnProps; items: { title: string; text?: string; image: string }[] };
+---
+<section class="section container">
+  <div class="ol pink-card reveal">
+    <div class="ol__head">
+      <h2 class="h2">{title}</h2>
+      {text && <p>{text}</p>}
+      {button && <Btn variant="white" flower {...button} />}
+    </div>
+    <ol class="ol__list">
+      {items.map((i, n) => (
+        <li>
+          <img src={img(i.image, 800)} alt="" loading="lazy" />
+          <span><small>{String(n + 1).padStart(2, '0')}</small><h3 class="h3">{i.title}</h3>{i.text && <p>{i.text}</p>}</span>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+<style>
+  .ol { display: grid; grid-template-columns: 5fr 7fr; gap: 56px; align-items: center; padding: 56px; border-radius: var(--radius-xl); }
+  .ol > * { position: relative; z-index: 1; }
+  .ol__head { display: grid; gap: 20px; justify-items: start; }
+  .ol__head p { color: var(--cream); opacity: .85; font-size: 14px; line-height: 1.55; }
+  .ol__list { list-style: none; margin: 0; padding: 0; display: grid; }
+  .ol__list li { display: grid; grid-template-columns: 96px 1fr; gap: 24px; align-items: center; padding: 18px 0; color: var(--cream); }
+  .ol__list li + li { border-top: 1px solid rgba(243, 238, 220, .2); }
+  .ol__list img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+  .ol__list li > span { display: grid; gap: 6px; }
+  .ol__list small { font: 600 12px/1 var(--body-font); letter-spacing: .1em; opacity: .6; }
+  .ol__list .h3 { font-size: clamp(21px, 1.8vw, 26px); color: var(--cream); }
+  .ol__list p { font-size: 13.5px; line-height: 1.5; opacity: .85; }
+  @media (max-width: 1023px) {
+    .ol { grid-template-columns: 1fr; gap: 24px; padding: 28px 20px; }
+    .ol__head :global(.btn) { width: 100%; }
+    .ol__list li { grid-template-columns: 64px 1fr; gap: 14px; padding: 14px 0; }
+    .ol__list img { width: 64px; height: 64px; }
+    .ol__list .h3 { font-size: 19px; }
+    .ol__list p { font-size: 12.5px; }
+  }
+</style>
