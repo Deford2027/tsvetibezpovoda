@@ -5,6 +5,7 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import PhotoStrip from '../components/PhotoStrip.astro';
 import IconCards from '../components/IconCards.astro';
+import PhotoCards from '../components/PhotoCards.astro';
 import PinkCta from '../components/PinkCta.astro';
 import Split from '../components/Split.astro';
 import Faq from '../components/Faq.astro';
@@ -50,14 +51,14 @@ import faq from '../data/faq.json';
     html={`<p>После получения цветов важно:</p><ul><li>использовать средство по уходу, которое мы прикладываем к заказу;</li><li>поставить букет в чистую воду в прохладное место;</li><li>учитывать особенности конкретного букета или композиции.</li></ul><p>Если у вас появились вопросы по состоянию цветов, свяжитесь с нами: ${SITE.phone}.</p>`}
     social
   />
-  <IconCards
+  <PhotoCards
     center
     title="Почему можно быть спокойным за заказ"
     items={[
-      { title: 'Доставка за 60 минут', text: 'По Курску – с момента оплаты, ежедневно с 10:00 до 00:00.' },
-      { title: 'Подтверждение до оплаты', text: 'Оплата переводом – только после подтверждения заказа.' },
-      { title: 'Своя курьерская служба', text: 'Доставку выполняет наша личная курьерская служба.' },
-      { title: 'Рейтинг 5,0', text: 'Так нас оценивают покупатели на Яндекс Картах.' },
+      { ico: 'clock', title: 'Доставка за 60 минут', text: 'По Курску – с момента оплаты, ежедневно с 10:00 до 00:00.', image: photo(59) },
+      { ico: 'check', title: 'Подтверждение до оплаты', text: 'Оплата переводом – только после подтверждения заказа.', image: photo(72) },
+      { ico: 'truck', title: 'Своя курьерская служба', text: 'Доставку выполняет наша личная курьерская служба.', image: photo(73) },
+      { ico: 'star', title: 'Рейтинг 5,0', text: 'Так нас оценивают покупатели на Яндекс Картах.', image: photo(79) },
     ]}
   />
   <Faq items={faq.garantee} />

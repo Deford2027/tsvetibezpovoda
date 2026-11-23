@@ -5,7 +5,7 @@ import PageHero from '../../components/PageHero.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import CatalogLinks from '../../components/CatalogLinks.astro';
 import QuizSection from '../../components/QuizSection.astro';
-import IconCards from '../../components/IconCards.astro';
+import PhotoCards from '../../components/PhotoCards.astro';
 import Faq from '../../components/Faq.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import ContactCard from '../../components/ContactCard.astro';
@@ -36,13 +36,13 @@ const popular = products.filter((p) => inPart(p, PART.hits) && p.images.length).
     <Catalog client:visible cards={popular} step={8} prices={false} sort={false} />
   </section>
   <QuizSection />
-  <IconCards
+  <PhotoCards
     title="Почему выбирают «Цветы без повода»" center
     items={[
-      { title: 'Доставка за 60 минут', text: 'По Курску – в течение 60 минут с момента оплаты, ежедневно с 10:00 до 00:00.' },
-      { title: 'Подарки к заказу', text: 'К каждому букету – открытка и средство по уходу.' },
-      { title: 'Бесплатно от 4 000 ₽', text: 'При заказе от 4 000 ₽ доставка по Курску бесплатная.' },
-      { title: 'Рейтинг 5,0', text: 'Так нас оценивают покупатели на Яндекс Картах.' },
+      { ico: 'clock', title: 'Доставка за 60 минут', text: 'По Курску – в течение 60 минут с момента оплаты, ежедневно с 10:00 до 00:00.', image: photo(83) },
+      { ico: 'gift', title: 'Подарки к заказу', text: 'К каждому букету – открытка и средство по уходу.', image: photo(97) },
+      { ico: 'truck', title: 'Бесплатно от 4 000 ₽', text: 'При заказе от 4 000 ₽ доставка по Курску бесплатная.', image: photo(70) },
+      { ico: 'star', title: 'Рейтинг 5,0', text: 'Так нас оценивают покупатели на Яндекс Картах.', image: photo(98) },
     ]}
   />
   <Faq items={faq.catalog} />

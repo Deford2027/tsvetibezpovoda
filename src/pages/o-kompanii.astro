@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Split from '../components/Split.astro';
 import AboutCollage from '../components/AboutCollage.astro';
-import IconCards from '../components/IconCards.astro';
+import PhotoCards from '../components/PhotoCards.astro';
 import CategoryTiles from '../components/CategoryTiles.astro';
 import PinkCta from '../components/PinkCta.astro';
 import DeliveryCards from '../components/DeliveryCards.astro';
@@ -29,15 +29,15 @@ import { photo } from '../lib/catalog';
     html={`<p>«${SITE.name}» – цветочный салон в Курске. Наша студия – на ул. Ленина, 74, открыта ежедневно с 10:00 до 22:00.</p><p>В каталоге – сборные букеты, монобукеты, композиции и премиум-букеты. Хиты и акции собраны в отдельные разделы, чтобы выбрать было проще.</p>`}
     buttons={[{ label: 'Выбрать букет', href: '/catalog' }, { label: 'Помогите выбрать', lead: true }]}
   />
-  <IconCards
+  <PhotoCards
     center
     title="От выбора цветов до момента вручения"
     sub="Для нас заказ – это не только готовый букет. Важно, чтобы вы были уверены в результате на каждом этапе"
     items={[
-      { title: 'Помощь с выбором', text: 'Подскажем букет под получателя, повод и бюджет – по телефону или в мессенджере.' },
-      { title: 'Своя курьерская служба', text: 'Доставляем по Курску в течение 60 минут с момента оплаты.' },
-      { title: 'Подарки к заказу', text: 'К каждому букету – открытка и средство по уходу.' },
-      { title: 'Удобная оплата', text: 'Переводом после подтверждения заказа или наличными при самовывозе.' },
+      { ico: 'chat', title: 'Помощь с выбором', text: 'Подскажем букет под получателя, повод и бюджет – по телефону или в мессенджере.', image: photo(31) },
+      { ico: 'clock', title: 'Своя курьерская служба', text: 'Доставляем по Курску в течение 60 минут с момента оплаты.', image: photo(46) },
+      { ico: 'gift', title: 'Подарки к заказу', text: 'К каждому букету – открытка и средство по уходу.', image: photo(85) },
+      { ico: 'card', title: 'Удобная оплата', text: 'Переводом после подтверждения заказа или наличными при самовывозе.', image: photo(57) },
     ]}
   />
   <CategoryTiles title="Что можно заказать" sub="Сборные букеты, монобукеты, композиции, премиум, розы и хризантемы" scroll />
