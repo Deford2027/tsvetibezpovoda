@@ -193,6 +193,8 @@
 .quiz__opt input:checked::after { transform: scale(1); }
 .quiz__fields, .quiz__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .quiz__nav { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.pink-card .quiz__box .btn--outline { border-color: var(--mauve); color: var(--mauve); }
+.pink-card .quiz__box .btn--outline:hover { background: var(--mauve); color: var(--cream); }
 .quiz__next { flex: 1; max-width: 420px; }
 .quiz__count { margin-left: auto; font-size: 13px; color: var(--muted); }
 .quiz__img { position: absolute; right: 48px; top: 48px; bottom: 48px; width: min(38%, 520px); height: calc(100% - 96px); object-fit: cover; border-radius: var(--radius-l); pointer-events: none; }
