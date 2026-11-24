@@ -3,8 +3,8 @@ import Base from '../layouts/Base.astro';
 import { u } from '../lib/url';
 import { SITE } from '../lib/site';
 import { img } from '../lib/img';
-import { products } from '../lib/catalog';
-const photo = products[2].images[0];
+import { photo as pickPhoto } from '../lib/catalog';
+const photo = pickPhoto(2);
 ---
 <Base title="Спасибо – Цветы без повода" noindex noSticky>
   <section class="container ty">

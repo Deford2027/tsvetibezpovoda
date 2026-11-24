@@ -161,4 +161,8 @@ async function pageImages() {
 
 await mkdir(DATA, { recursive: true });
 if (process.argv.includes('--img')) await pageImages();
-else await store();
+else if (process.argv.includes('--zateret')) await store();
+else {
+  console.error('Остановлено: товары ведутся в админке, повторное снятие с донора затрёт правки. Точно нужно – npm run data -- --zateret');
+  process.exit(1);
+}

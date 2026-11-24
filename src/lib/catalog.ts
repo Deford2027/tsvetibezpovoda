@@ -1,4 +1,5 @@
 import productsJson from '../data/products.json';
+import blockPhotos from '../data/block-photos.json';
 import partsJson from '../data/parts.json';
 
 export interface Product {
@@ -16,6 +17,11 @@ export interface Product {
   parts: string[];
   sort: number;
   images: string[];
+  sku?: string;
+  /** Выключен в админке («На сайте») – на сайте не показывается, страница товара не собирается. */
+  hidden?: boolean;
+  seoTitle?: string;
+  seoDescr?: string;
 }
 export interface Part { id: string; title: string; parent: string | null; children: Part[] }
 
@@ -26,7 +32,10 @@ export interface Card {
   parts: string[]; stock: number | null;
 }
 
-export const products = productsJson as Product[];
+/** Все товары, включая скрытые – для админки. */
+export const allProducts = productsJson as Product[];
+/** Товары, которые видны на сайте. */
+export const products = allProducts.filter((p) => !p.hidden);
 export const parts = partsJson as Part[];
 
 const flat: Part[] = [];
@@ -90,6 +99,6 @@ export function catalogCards(part: string): Card[] {
     .map(toCard);
 }
 
-/** Фото букета донора для блоков страниц (первые экраны, баннеры): n-й товар с фото. */
-const withImg = products.filter((p) => p.images.length);
-export const photo = (n: number): string => withImg[n % withImg.length].images[0];
+/** Фото букета донора для блоков страниц (первые экраны, баннеры). Список закреплён в block-photos.json:
+    товары в админке добавляют и удаляют, а картинки блоков от этого сдвигаться не должны. */
+export const photo = (n: number): string => blockPhotos[n % blockPhotos.length];

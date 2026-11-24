@@ -26,8 +26,8 @@ const addons = isAddon ? [] : products
   .filter((x) => x.price && x.images.length && addonParts.some((id) => inPart(x, id)))
   .slice(0, 12).map(toCard);
 const partNames = p.parts.map((id) => partById.get(id)?.title).filter(Boolean);
-const title = `${p.title} – купить с доставкой по Курску за ${rub(p.price!)} | ${SITE.name}`;
-const desc = `${p.title}${p.descr ? ': ' + p.descr.toLowerCase() : ''}. ${rub(p.price!)}. Доставка по Курску за 60 минут, открытка и средство по уходу в подарок.`;
+const title = p.seoTitle || `${p.title} – купить с доставкой по Курску за ${rub(p.price!)} | ${SITE.name}`;
+const desc = p.seoDescr || `${p.title}${p.descr ? ': ' + p.descr.toLowerCase() : ''}. ${rub(p.price!)}. Доставка по Курску за 60 минут, открытка и средство по уходу в подарок.`;
 const ld = {
   '@context': 'https://schema.org', '@type': 'Product', name: p.title, description: p.descr || p.title,
   image: p.images.map((i) => new URL(u(i + '-1000.webp'), Astro.site).href), sku: p.id,

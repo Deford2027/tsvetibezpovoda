@@ -5,7 +5,7 @@ import ContactCard from '../components/ContactCard.astro';
 import QuizSection from '../components/QuizSection.astro';
 import FinalCta from '../components/FinalCta.astro';
 import { SITE } from '../lib/site';
-import { products } from '../lib/catalog';
+import { photo } from '../lib/catalog';
 const ld = {
   '@context': 'https://schema.org', '@type': 'Florist', name: SITE.name, telephone: '+79065745745',
   address: { '@type': 'PostalAddress', addressLocality: SITE.city, streetAddress: SITE.address, addressCountry: 'RU' },
@@ -17,7 +17,7 @@ const ld = {
     crumbs={[{ label: 'Главная', href: '/' }, { label: 'Контакты' }]}
     title="Контакты «Цветы без повода»"
     text={`Свяжитесь с нами, чтобы оформить заказ, уточнить условия доставки или получить помощь с выбором цветов.\nСтудия: ${SITE.city}, ${SITE.address}, ${SITE.hours.toLowerCase()}.`}
-    image={products[4].images[0]}
+    image={photo(4)}
     buttons={[{ label: 'Выбрать букет', href: '/catalog' }, { label: 'Помогите выбрать', lead: true }]}
     facts={[SITE.owner, `ИНН ${SITE.inn} / ОГРНИП ${SITE.ogrnip}`]}
   />

@@ -5,12 +5,13 @@
     остальных вкладок стандарта нет совсем, не замками. */
 import '../styles/admin.css';
 import { u } from '../lib/url';
-type Tab = 'pages' | 'leads';
+type Tab = 'pages' | 'products' | 'leads';
 interface Props { title: string; active: Tab }
 const { title, active } = Astro.props;
 const site = new URL(u('/'), Astro.site).href;
 const tabs: [Tab, string, string][] = [
   ['pages', '/admin/', 'Страницы сайта'],
+  ['products', '/admin/products/', 'Товары'],
   ['leads', '/admin/leads/', 'Заявки'],
 ];
 ---
