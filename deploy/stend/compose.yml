@@ -1,0 +1,23 @@
+# «Цветы без повода» – стенд на FirstVDS Москва. Порты наружу не публикуются: общий Caddy ходит по сети caddy.
+name: cvety
+services:
+  cvety-web:
+    image: nginxinc/nginx-unprivileged:1.27-alpine
+    container_name: cvety-web
+    restart: unless-stopped
+    volumes:
+      - ./dist:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    mem_limit: 64m
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+    networks: [proxy]
+networks:
+  proxy:
+    name: caddy
+    external: true

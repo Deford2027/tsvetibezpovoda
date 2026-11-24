@@ -1,0 +1,18 @@
+
+# >>> cvety: стенд «Цветы без повода» (Deford2027/tsvetibezpovoda, файлы и compose – /opt/cvety), закрыт от поисковиков
+cvety.168.113.179.49.nip.io {
+	# Порт 80 у nginx ispmanager – сертификат только через TLS-ALPN на 443.
+	tls {
+		issuer acme {
+			disable_http_challenge
+		}
+	}
+	encode gzip zstd
+	header {
+		X-Robots-Tag "noindex, nofollow"
+		X-Content-Type-Options "nosniff"
+		-Server
+	}
+	reverse_proxy cvety-web:8080
+}
+# <<< cvety
