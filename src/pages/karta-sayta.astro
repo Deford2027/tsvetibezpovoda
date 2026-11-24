@@ -45,25 +45,26 @@ const pages = [
   </section>
 </Base>
 <style>
-  .km { padding-top: 24px; display: grid; gap: 20px; }
+  .km { padding-top: 24px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .km__h { margin-top: 28px; font: 400 clamp(26px, 2.6vw, 36px)/1.1 var(--head-font); color: var(--mauve); }
   ul { list-style: none; margin: 0; padding: 0; }
-  .km__pages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .km__pages { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
   .km__pages a { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 100%; padding: 18px 20px; border-radius: var(--radius-l); background: var(--bg-soft); color: var(--ink); font-size: 15px; transition: background-color .2s; }
   .km__pages a::after { content: '→'; color: var(--mauve); }
   .km__pages a:hover { background: var(--pink); }
   .km__cats { display: grid; gap: 16px; }
-  .km__cat { padding: 24px 28px; border: 1px solid var(--stroke); border-radius: var(--radius-xl); }
+  .km__cat { min-width: 0; padding: 24px 28px; border: 1px solid var(--stroke); border-radius: var(--radius-xl); }
   .km__cat-head { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 16px; font: 400 clamp(22px, 2vw, 28px)/1.1 var(--head-font); color: var(--mauve); }
   .km__cat-head small { padding: 5px 10px; border-radius: 999px; background: var(--mauve); color: var(--cream); font: 600 12px/1 var(--body-font); }
   .km__cat-head:hover span { text-decoration: underline; text-underline-offset: 4px; }
   .km__cat ul { columns: 4; column-gap: 28px; }
-  .km__cat li { break-inside: avoid; padding: 4px 0; font-size: 14px; }
+  .km__cat li { overflow-wrap: anywhere; break-inside: avoid; padding: 4px 0; font-size: 14px; }
   .km__cat li a { color: var(--text); }
   .km__cat li a:hover { color: var(--mauve); text-decoration: underline; }
   @media (max-width: 1023px) {
-    .km__pages { grid-template-columns: 1fr 1fr; gap: 8px; }
-    .km__pages a { padding: 14px; font-size: 13.5px; }
+    .km__pages { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .km__pages a { padding: 14px 12px; font-size: 13px; }
+    .km__pages a::after { content: none; }
     .km__cat { padding: 18px 16px; border-radius: var(--radius-l); }
     .km__cat ul { columns: 2; column-gap: 16px; }
     .km__cat li { font-size: 13px; }

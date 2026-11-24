@@ -5,18 +5,49 @@ import Crumbs from './Crumbs.astro';
 import legal from '../data/legal.json';
 import { SITE } from '../lib/site';
 const { doc, title } = Astro.props as { doc: 'privacy' | 'agreement'; title: string };
+// оглавление: заголовкам h2 проставляются якоря
+const toc: { id: string; text: string }[] = [];
+// в соглашении разделы – просто строки «1. Название» между <br/>: делаем их h2, слова не меняем
+const marked = legal[doc].html.includes('<h2') ? legal[doc].html
+  : legal[doc].html.replace(/(<\/p>|<br\/>)(\d{1,2}\. [А-ЯЁ][^<.]{2,80})<br\/>/g, '$1<h2>$2</h2>');
+const html = marked.replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/g, (_: string, a: string, t: string) => {
+  const id = `p${toc.length + 1}`;
+  toc.push({ id, text: t.replace(/<[^>]+>/g, '') });
+  return `<h2${a} id="${id}">${t}</h2>`;
+});
 ---
 <Base title={`${title} – ${SITE.name}`} description={`${title} сайта цветочного салона «${SITE.name}» (${SITE.city}).`}>
   <article class="container legal">
     <Crumbs items={[{ label: 'Главная', href: '/' }, { label: title }]} />
     <h1 class="h1">{legal[doc].title}</h1>
-    <div class="legal__body" set:html={legal[doc].html} />
+    <div class:list={['legal__grid', { 'legal__grid--toc': toc.length > 1 }]}>
+      {toc.length > 1 && (
+        <nav class="legal__toc" aria-label="Содержание">
+          <p>Содержание</p>
+          <ol>{toc.map((t) => <li><a href={`#${t.id}`}>{t.text}</a></li>)}</ol>
+        </nav>
+      )}
+      <div class="legal__body" set:html={html} />
+    </div>
   </article>
 </Base>
 <style>
-  .legal { max-width: 960px; padding-top: 24px; display: grid; gap: 24px; }
-  .legal__body { font-size: 15px; line-height: 1.7; color: var(--ink); }
-  .legal__body :global(h2) { font: 500 24px/1.25 var(--head-font); color: var(--mauve); margin: 36px 0 12px; }
+  .legal { padding-top: 24px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .legal__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; margin-top: 16px; }
+  .legal__grid--toc { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 60px; align-items: start; }
+  .legal__toc { position: sticky; top: 120px; max-height: calc(100vh - 150px); overflow-y: auto; padding: 28px; border-radius: var(--radius-xl); background: var(--bg-soft); }
+  .legal__toc p { margin-bottom: 14px; font: 400 24px/1.2 var(--head-font); color: var(--mauve); }
+  .legal__toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 14px; line-height: 1.4; }
+  .legal__toc a { color: var(--text); }
+  .legal__toc a:hover { color: var(--mauve); text-decoration: underline; }
+  .legal__body { min-width: 0; font-size: 15px; line-height: 1.7; color: var(--ink); overflow-wrap: anywhere; }
+  .legal__body :global(h2) { font: 500 24px/1.25 var(--head-font); color: var(--mauve); margin: 36px 0 12px; scroll-margin-top: 120px; }
+  .legal__body > :global(:first-child) { margin-top: 0; }
   .legal__body :global(p) { margin: 0 0 6px; }
-  .legal__body :global(a) { text-decoration: underline; word-break: break-all; }
+  .legal__body :global(a) { text-decoration: underline; }
+  @media (max-width: 1023px) {
+    .legal__grid--toc { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .legal__toc { position: static; max-height: none; padding: 20px; border-radius: var(--radius-l); }
+    .legal__body :global(h2) { font-size: 21px; scroll-margin-top: 90px; }
+  }
 </style>

@@ -9,17 +9,18 @@ import { SITE } from '../lib/site';
     <Crumbs items={[{ label: 'Главная', href: '/' }, { label: 'Реквизиты' }]} />
     <h1 class="h1">Реквизиты</h1>
     <dl>
-      <dt>Продавец</dt><dd>{SITE.owner}</dd>
-      <dt>ИНН / ОГРНИП</dt><dd>{SITE.inn} / {SITE.ogrnip}</dd>
-      <dt>Адрес студии</dt><dd>{SITE.city}, {SITE.address}</dd>
-      <dt>Телефон</dt><dd><a href={SITE.phoneHref}>{SITE.phone}</a></dd>
+      <div><dt>Продавец</dt><dd>{SITE.owner}</dd></div>
+      <div><dt>ИНН / ОГРНИП</dt><dd>{SITE.inn} / {SITE.ogrnip}</dd></div>
+      <div><dt>Адрес студии</dt><dd>{SITE.city}, {SITE.address}</dd></div>
+      <div><dt>Телефон</dt><dd><a href={SITE.phoneHref}>{SITE.phone}</a></dd></div>
     </dl>
   </article>
 </Base>
 <style>
-  .rq { max-width: 960px; padding-top: 24px; display: grid; gap: 24px; }
-  dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 12px 32px; font-size: 16px; color: var(--ink); }
-  dt { color: var(--muted); }
-  dd { margin: 0; }
-  @media (max-width: 600px) { dl { grid-template-columns: 1fr; gap: 4px; } dd { margin-bottom: 10px; } }
+  .rq { padding-top: 24px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  dl { margin: 16px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  dl > div { display: grid; align-content: start; gap: 8px; padding: 28px; border-radius: var(--radius-xl); background: var(--bg-soft); }
+  dt { font-size: 13px; color: var(--muted); }
+  dd { margin: 0; font-size: clamp(18px, 1.7vw, 24px); line-height: 1.3; color: var(--ink); overflow-wrap: anywhere; }
+  @media (max-width: 1023px) { dl { grid-template-columns: minmax(0, 1fr); gap: 10px; } dl > div { padding: 18px 16px; border-radius: var(--radius-l); } }
 </style>
