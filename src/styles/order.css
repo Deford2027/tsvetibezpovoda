@@ -50,13 +50,24 @@
 .of-pickup a { color: var(--mauve); font-weight: 600; }
 
 .of-days { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.of-days button, .of-days__pick, .of-slots button {
+.of-days button, .of-slots button {
   position: relative; display: grid; gap: 2px; justify-items: start; padding: 12px 16px; border: 1px solid var(--line); border-radius: var(--radius-l);
   background: #fff; font: 600 14px/1.2 var(--body-font); color: var(--ink); text-align: left; cursor: pointer; transition: border-color .2s, background-color .2s;
 }
 .of-days small, .of-slots small { font-weight: 400; font-size: 11.5px; color: var(--muted); }
 .of-days .is-on, .of-slots .is-on { border-color: var(--mauve); background: var(--pink-soft); color: var(--mauve-dark); }
-.of-days__pick input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+.of-cal { margin-top: 10px; padding: 16px; border: 1px solid var(--line); border-radius: 16px; max-width: 420px; }
+.of-cal__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-size: 15px; }
+.of-cal__head b { font-weight: 600; }
+.of-cal__head b { display: inline-block; }
+.of-cal__head b::first-letter { text-transform: uppercase; }
+.of-cal button { height: 42px; border: 1px solid transparent; border-radius: 12px; background: none; font: inherit; color: inherit; cursor: pointer; }
+.of-cal__head button { width: 42px; font-size: 22px; line-height: 1; }
+.of-cal button:hover:not(:disabled) { background: var(--pink-soft); }
+.of-cal button:disabled { opacity: .3; cursor: default; }
+.of-cal button.is-on { border-color: var(--mauve); background: var(--pink-soft); color: var(--mauve-dark); font-weight: 600; }
+.of-cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font-size: 14px; }
+.of-cal__grid span { text-align: center; font-size: 12px; color: var(--muted); padding: 4px 0; }
 .of-slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .of-slots button { font-weight: 500; font-size: 13.5px; padding: 10px 12px; }
 
@@ -115,7 +126,7 @@
   .of-item__sum { grid-area: sum; align-self: center; }
   .of-item .cs__del { grid-area: del; }
   .of-days { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
-  .of-days button, .of-days__pick { padding: 10px; font-size: 13px; }
+  .of-days button { padding: 10px; font-size: 13px; }
   .of-slots { grid-template-columns: 1fr 1fr; }
   .seg { width: 100%; }
   .seg button { flex: 1; padding: 0 10px; }

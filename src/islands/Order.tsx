@@ -41,6 +41,35 @@ function Seg<T extends string>({ value, options, onChange, name }: { value: T; o
   );
 }
 
+const WEEK = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+/** Календарь «Другая дата»: свой, потому что системный по клику на карточку открывается не во всех браузерах. */
+function Calendar({ today, value, onPick }: { today: Date; value: string; onPick: (iso: string) => void }) {
+  const [shown, setShown] = useState(() => { const d = new Date(value + 'T12:00'); return { y: d.getFullYear(), m: d.getMonth() }; });
+  const first = new Date(shown.y, shown.m, 1, 12);
+  const count = new Date(shown.y, shown.m + 1, 0, 12).getDate();
+  const shift = (shown.y - today.getFullYear()) * 12 + shown.m - today.getMonth();
+  const go = (k: number) => { const d = new Date(shown.y, shown.m + k, 1, 12); setShown({ y: d.getFullYear(), m: d.getMonth() }); };
+  return (
+    <div class="of-cal" role="group" aria-label="Выбор даты">
+      <div class="of-cal__head">
+        <button type="button" aria-label="Предыдущий месяц" disabled={shift <= 0} onClick={() => go(-1)}>‹</button>
+        <b aria-live="polite">{first.toLocaleDateString('ru-RU', { month: 'long' })} {shown.y}</b>
+        <button type="button" aria-label="Следующий месяц" disabled={shift >= 12} onClick={() => go(1)}>›</button>
+      </div>
+      <div class="of-cal__grid">
+        {WEEK.map((w) => <span aria-hidden="true">{w}</span>)}
+        {Array.from({ length: count }, (_, i) => {
+          const iso = isoDay(new Date(shown.y, shown.m, i + 1, 12));
+          return (
+            <button type="button" class={iso === value ? 'is-on' : ''} aria-pressed={iso === value} aria-label={human(iso)} disabled={iso < isoDay(today)}
+              style={i === 0 ? { gridColumnStart: ((first.getDay() + 6) % 7) + 1 } : undefined} onClick={() => onPick(iso)}>{i + 1}</button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function Order({ addons }: { addons: Card[] }) {
   const [ready, setReady] = useState(false);
   useEffect(() => setReady(true), []);
@@ -58,6 +87,7 @@ export default function Order({ addons }: { addons: Card[] }) {
   const today = useMemo(() => new Date(), []);
   const [day, setDay] = useState(isoDay(today));
   const [slot, setSlot] = useState('asap');
+  const [cal, setCal] = useState(false);
   const [card, setCard] = useState('');
   const [pay, setPay] = useState('transfer');
   const [comment, setComment] = useState('');
@@ -70,11 +100,20 @@ export default function Order({ addons }: { addons: Card[] }) {
   const subtotal = ready ? cartTotal.value : 0;
   const dPrice = deliveryPrice(subtotal, mode === 'pickup');
   const total = subtotal + (dPrice ?? 0);
-  const tomorrow = isoDay(new Date(today.getTime() + 864e5));
+  const tomorrow = isoDay(new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, 12));
   const isToday = day === isoDay(today);
   // Сегодня – только интервалы, которые ещё не начались (час запаса на сборку).
   const hour = today.getHours();
   const slots = SLOTS.filter((s) => !isToday || parseInt(s, 10) >= hour + 1);
+
+  const other = day !== isoDay(today) && day !== tomorrow;
+  // Смена дня: «как можно скорее» бывает только сегодня, а прошедший сегодня интервал выбирать нельзя.
+  const chooseDay = (iso: string) => {
+    setDay(iso);
+    setCal(false);
+    if (iso !== isoDay(today)) { if (slot === 'asap') setSlot(SLOTS[0]); }
+    else if (slot !== 'asap' && parseInt(slot, 10) < hour + 1) setSlot('asap');
+  };
 
   const err = (k: string) => errors[k] && <span class="of-err">{errors[k]}</span>;
 
@@ -249,13 +288,11 @@ export default function Order({ addons }: { addons: Card[] }) {
 
         <Section n={4} title="Когда">
           <div class="of-days">
-            <button type="button" class={day === isoDay(today) ? 'is-on' : ''} onClick={() => setDay(isoDay(today))}>Сегодня<small>{human(isoDay(today))}</small></button>
-            <button type="button" class={day === tomorrow ? 'is-on' : ''} onClick={() => { setDay(tomorrow); if (slot === 'asap') setSlot(SLOTS[0]); }}>Завтра<small>{human(tomorrow)}</small></button>
-            <label class={`of-days__pick${day !== isoDay(today) && day !== tomorrow ? ' is-on' : ''}`}>
-              Другая дата<small>{day !== isoDay(today) && day !== tomorrow ? human(day) : 'выбрать'}</small>
-              <input type="date" min={isoDay(today)} value={day} onChange={(e) => { const v = (e.target as HTMLInputElement).value; if (v) { setDay(v); if (slot === 'asap') setSlot(SLOTS[0]); } }} />
-            </label>
+            <button type="button" class={day === isoDay(today) ? 'is-on' : ''} onClick={() => chooseDay(isoDay(today))}>Сегодня<small>{human(isoDay(today))}</small></button>
+            <button type="button" class={day === tomorrow ? 'is-on' : ''} onClick={() => chooseDay(tomorrow)}>Завтра<small>{human(tomorrow)}</small></button>
+            <button type="button" class={other ? 'is-on' : ''} aria-expanded={cal} onClick={() => setCal(!cal)}>Другая дата<small>{other ? human(day) : 'выбрать'}</small></button>
           </div>
+          {cal && <Calendar today={today} value={day} onPick={chooseDay} />}
           <p class="of-label">{mode === 'pickup' ? 'Когда заберёте' : 'Интервал доставки'}</p>
           <div class="of-slots">
             {isToday && <button type="button" class={slot === 'asap' ? 'is-on' : ''} onClick={() => setSlot('asap')}>Как можно скорее<small>за 60 минут после оплаты</small></button>}
