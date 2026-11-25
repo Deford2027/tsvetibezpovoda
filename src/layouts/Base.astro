@@ -32,6 +32,8 @@ const closed = noindex || import.meta.env.PUBLIC_NOINDEX === '1';
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {/* Подтверждение прав в Яндекс Вебмастере – код с сайта на Тильде */}
+    {!closed && <meta name="yandex-verification" content="6ba0ad2f94930d43" />}
     {closed && <meta name="robots" content="noindex, nofollow" />}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />

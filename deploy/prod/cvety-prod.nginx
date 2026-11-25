@@ -1,0 +1,2 @@
+# tsvetibezpovoda.ru: http → https 301 (Caddy на 443, порт 80 у nginx ispmanager)
+server { listen 80; listen [::]:80; server_name tsvetibezpovoda.ru www.tsvetibezpovoda.ru; location /.well-known/acme-challenge/ { return 404; } location / { return 301 https://tsvetibezpovoda.ru$request_uri; } }

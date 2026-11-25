@@ -1,0 +1,24 @@
+
+# >>> cvety-prod: tsvetibezpovoda.ru (файлы и compose – /opt/cvety-prod). Добавлять после смены A-записей.
+tsvetibezpovoda.ru {
+	tls {
+		issuer acme {
+			disable_http_challenge
+		}
+	}
+	encode gzip zstd
+	header {
+		X-Content-Type-Options "nosniff"
+		-Server
+	}
+	reverse_proxy cvety-prod-web:8080
+}
+www.tsvetibezpovoda.ru {
+	tls {
+		issuer acme {
+			disable_http_challenge
+		}
+	}
+	redir https://tsvetibezpovoda.ru{uri} 301
+}
+# <<< cvety-prod

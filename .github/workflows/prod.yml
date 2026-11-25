@@ -1,0 +1,35 @@
+name: Prod
+# Боевая сборка tsvetibezpovoda.ru → ветка prod-build; сервер забирает её сам (deploy/prod/update.sh).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: prod
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: node scripts/lock-admin.mjs
+        env:
+          ADMIN_LOGIN: ${{ secrets.ADMIN_LOGIN }}
+          ADMIN_PASS: ${{ secrets.ADMIN_PASS }}
+          SVERH_LOGIN: ${{ secrets.SVERH_LOGIN }}
+          SVERH_PASS: ${{ secrets.SVERH_PASS }}
+      - run: |
+          mkdir out && mv dist out/site && mkdir -p dist && cp out/site/redirects.json dist/
+          node scripts/nginx-redirects.mjs > out/redirects.map
+          cd out && git init -q -b prod-build && git add -A
+          git -c user.name=github-actions -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -qm "Сборка ${GITHUB_SHA}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${GITHUB_REPOSITORY}.git" prod-build
