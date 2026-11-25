@@ -14,6 +14,8 @@ export const SITE = {
   ogrnip: '323460000000097',
   /** Счётчик Яндекс Метрики старого сайта; ставится только в боевой сборке (Base.astro). */
   metrika: 102229305,
+  /** Точка салона на Яндекс Картах (та же, что в YaMap.astro). */
+  geo: [51.744454, 36.193525] as const,
   yandexOrg: 'https://yandex.ru/profile/137449738710',
 };
 
@@ -41,6 +43,8 @@ export const FEATURES = [
 /** Страницы-каталоги: раздел магазина Тильды (uid) → ЧПУ. Источник – src/data/sections.json (его же читает npm run data). */
 export const CATALOGS = sections.map((s) => ({
   ...s,
+  /** Адрес раздела; «Акции» – отдельная страница /sale, а не раздел каталога. */
+  href: 'page' in s && s.page ? s.page : `/catalog/${s.slug}`,
   crumb: s.title,
   h1: `${s.title} с доставкой по Курску`,
   heading: s.title,
@@ -53,48 +57,48 @@ export const OCCASIONS = occasions;
 /** Верхнее меню – полный набор эталона Milovini; «Авторские букеты» эталона = «Премиум» донора. */
 export const NAV = [
   { label: 'Главная', href: '/' },
-  { label: 'Акции', href: '/akcii' },
-  { label: 'Корпоративным клиентам', href: '/korporativnym-klientam' },
+  { label: 'Акции', href: '/sale' },
+  { label: 'Корпоративным клиентам', href: '/corporate' },
   { label: 'Доставка', href: '/delivery' },
   { label: 'Каталог цветов', href: '/catalog' },
   { label: 'Премиум', href: '/catalog/premium' },
   { label: 'Отзывы', href: '/#rev' },
   { label: 'Преимущества', href: '/#preim' },
-  { label: 'Гарантии', href: '/garantii' },
+  { label: 'Гарантии', href: '/guarantees' },
   { label: 'Контакты', href: '/contacts' },
 ];
 
 export const FOOTER = {
   menu: [
     { label: 'Главная', href: '/' },
-    { label: 'О компании', href: '/o-kompanii' },
-    { label: 'Акции', href: '/akcii' },
-    { label: 'Корпоративным клиентам', href: '/korporativnym-klientam' },
+    { label: 'О компании', href: '/about' },
+    { label: 'Акции', href: '/sale' },
+    { label: 'Корпоративным клиентам', href: '/corporate' },
     { label: 'Каталог цветов', href: '/catalog' },
     { label: 'Отзывы', href: '/#rev' },
     { label: 'Преимущества', href: '/#preim' },
-    { label: 'Гарантии', href: '/garantii' },
+    { label: 'Гарантии', href: '/guarantees' },
     { label: 'Доставка и оплата', href: '/delivery' },
     { label: 'Контакты', href: '/contacts' },
   ],
-  catalog: [{ label: 'Все букеты', href: '/catalog' }, ...CATALOGS.map((c) => ({ label: c.title, href: `/catalog/${c.slug}` })), ...OCCASIONS.map((o) => ({ label: o.title, href: `/${o.slug}` }))],
+  catalog: [{ label: 'Все букеты', href: '/catalog' }, ...CATALOGS.map((c) => ({ label: c.title, href: c.href })), ...OCCASIONS.map((o) => ({ label: o.title, href: `/${o.slug}` }))],
   buyers: [
-    { label: 'Акции', href: '/akcii' },
+    { label: 'Акции', href: '/sale' },
     { label: 'Доставка и оплата', href: '/delivery' },
     { label: 'Избранное', href: '/favorites' },
     { label: 'Корзина', href: '/order' },
   ],
   info: [
     { label: 'Политика конфиденциальности', href: '/privacy' },
-    { label: 'Пользовательское соглашение', href: '/soglashenie' },
-    { label: 'Реквизиты', href: '/rekvizity' },
-    { label: 'Карта сайта', href: '/karta-sayta' },
+    { label: 'Пользовательское соглашение', href: '/terms' },
+    { label: 'Реквизиты', href: '/company-details' },
+    { label: 'Карта сайта', href: '/site-map' },
   ],
 };
 
 /** Плитки разделов (главная «О компании», «Корпоративным клиентам») – фото первого букета раздела донора. */
 export const CATEGORY_TILES = [
-  ...CATALOGS.map((c) => ({ title: c.title, href: `/catalog/${c.slug}`, part: c.part })),
+  ...CATALOGS.map((c) => ({ title: c.title, href: c.href, part: c.part })),
   { title: 'Розы', href: '/catalog?part=648946318343', part: '648946318343' },
   { title: 'Хризантемы', href: '/catalog?part=301155593693', part: '301155593693' },
 ];

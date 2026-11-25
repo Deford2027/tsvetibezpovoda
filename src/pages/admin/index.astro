@@ -12,13 +12,13 @@ const site = (p: string) => new URL(u(p), Astro.site).href;
 const live = products.filter((p) => p.price && p.images.length);
 const inCatalog = (part: string) => live.filter((p) => p.parts.includes(part));
 const inner = [
-  { name: 'О компании', path: '/o-kompanii' }, { name: 'Акции', path: '/akcii' },
-  { name: 'Корпоративным клиентам', path: '/korporativnym-klientam' }, { name: 'Гарантии', path: '/garantii' },
+  { name: 'О компании', path: '/about' }, { name: 'Акции', path: '/sale' },
+  { name: 'Корпоративным клиентам', path: '/corporate' }, { name: 'Гарантии', path: '/guarantees' },
   { name: 'Доставка и оплата', path: '/delivery' }, { name: 'Контакты', path: '/contacts' },
   ...OCCASIONS.map((o) => ({ name: o.title, path: `/${o.slug}` })),
 ];
-const legal = [{ name: 'Политика конфиденциальности', path: '/privacy' }, { name: 'Пользовательское соглашение', path: '/soglashenie' }, { name: 'Реквизиты', path: '/rekvizity' }];
-const tech = [{ name: 'Оформление заказа', path: '/order' }, { name: 'Избранное', path: '/favorites' }, { name: 'Спасибо', path: '/thanks' }, { name: 'Карта сайта', path: '/karta-sayta' }, { name: 'Страница не найдена', path: '/404' }];
+const legal = [{ name: 'Политика конфиденциальности', path: '/privacy' }, { name: 'Пользовательское соглашение', path: '/terms' }, { name: 'Реквизиты', path: '/company-details' }];
+const tech = [{ name: 'Оформление заказа', path: '/order' }, { name: 'Избранное', path: '/favorites' }, { name: 'Спасибо', path: '/thanks' }, { name: 'Карта сайта', path: '/site-map' }, { name: 'Страница не найдена', path: '/404' }];
 // Страниц на сайте: главная + общий каталог + страницы-каталоги + карточки + внутренние + юридические + технические
 const total = 1 + 1 + CATALOGS.length + live.length + inner.length + legal.length + tech.length;
 const thumb = (p: Product) => u(p.images[0] + '-480.webp');
@@ -71,7 +71,7 @@ const rub = (n: number | null) => (n ?? 0).toLocaleString('ru-RU') + ' ₽';
               <summary class="prow">
                 {list[0] ? <img class="thumb" src={thumb(list[0])} alt="" loading="lazy" /> : <span class="thumb"></span>}
                 <div><span class="pname"><i class="caret"></i>Каталог «{c.title}»</span><div class="muted" style="font-size:12px">{list.length} товаров</div></div>
-                <a class="purl" href={u(`/catalog/${c.slug}`)} target="_blank" onclick="event.stopPropagation()">{site(`/catalog/${c.slug}`)}</a>
+                <a class="purl" href={u(c.href)} target="_blank" onclick="event.stopPropagation()">{site(c.href)}</a>
                 <span class="pkind">Каталог</span>
               </summary>
               {list.map((p) => (

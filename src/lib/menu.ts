@@ -14,12 +14,12 @@ function tile(title: string, href: string, part: string, children: MenuTile['chi
 }
 
 export const menuTiles: MenuTile[] = [
-  tile('Сборные букеты', '/catalog/sbornye-bukety', PART.mixed),
-  tile('Монобукеты', '/catalog/monobukety', PART.mono),
-  tile('Композиции', '/catalog/kompozitsii', PART.compositions),
+  tile('Сборные букеты', '/catalog/mixed-bouquets', PART.mixed),
+  tile('Монобукеты', '/catalog/mono-bouquets', PART.mono),
+  tile('Композиции', '/catalog/arrangements', PART.compositions),
   tile('Премиум', '/catalog/premium', PART.premium),
-  tile('Хиты', '/catalog/hity', PART.hits),
-  tile('Акции', '/catalog/akcii', PART.sale),
+  tile('Хиты', '/catalog/bestsellers', PART.hits),
+  tile('Акции', '/sale', PART.sale),
   tile('Розы', `/catalog?part=${PART.roses}`, PART.roses),
   tile('Хризантемы', `/catalog?part=${PART.chrysanthemums}`, PART.chrysanthemums),
 ];

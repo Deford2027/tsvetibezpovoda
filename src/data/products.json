@@ -1,7 +1,7 @@
 [
  {
   "id": "102997429263",
-  "path": "/catalog/sbornye-bukety/orekhovyy-krem",
+  "path": "/catalog/mixed-bouquets/orekhovyy-krem",
   "old": "/hit/tproduct/102997429263-orehovii-krem",
   "title": "Ореховый крем",
   "descr": "",
@@ -23,7 +23,7 @@
  },
  {
   "id": "556007564083",
-  "path": "/catalog/sbornye-bukety/rannee-utro",
+  "path": "/catalog/mixed-bouquets/rannee-utro",
   "old": "/1september/tproduct/556007564083-rannee-utro",
   "title": "Раннее утро",
   "descr": "",
@@ -44,7 +44,7 @@
  },
  {
   "id": "894829180603",
-  "path": "/catalog/monobukety/rozovyy-kompliment",
+  "path": "/catalog/mono-bouquets/rozovyy-kompliment",
   "old": "/sale/tproduct/894829180603-rozovii-kompliment",
   "title": "Розовый комплимент",
   "descr": "",
@@ -64,7 +64,7 @@
  },
  {
   "id": "507574232722",
-  "path": "/catalog/monobukety/letniy-kompliment",
+  "path": "/catalog/mono-bouquets/letniy-kompliment",
   "old": "/mono/tproduct/507574232722-letnii-kompliment",
   "title": "Летний комплимент",
   "descr": "",
@@ -83,7 +83,7 @@
  },
  {
   "id": "886546673213",
-  "path": "/catalog/monobukety/belyy-kompliment",
+  "path": "/catalog/mono-bouquets/belyy-kompliment",
   "old": "/hit/tproduct/886546673213-belii-kompliment",
   "title": "Белый комплимент",
   "descr": "",
@@ -104,7 +104,7 @@
  },
  {
   "id": "206937648083",
-  "path": "/catalog/monobukety/belaya-klassika",
+  "path": "/catalog/mono-bouquets/belaya-klassika",
   "old": "/sale/tproduct/206937648083-belaya-klassika",
   "title": "Белая классика",
   "descr": "",
@@ -125,7 +125,7 @@
  },
  {
   "id": "303350651382",
-  "path": "/catalog/hity/romashkovoe-oblako",
+  "path": "/catalog/bestsellers/romashkovoe-oblako",
   "old": "/hit/tproduct/303350651382-romashkovoe-oblako",
   "title": "Ромашковое облако",
   "descr": "Стойкий и пышный букет",
@@ -146,7 +146,7 @@
  },
  {
   "id": "318608023542",
-  "path": "/catalog/monobukety/meri",
+  "path": "/catalog/mono-bouquets/meri",
   "old": "/mono/tproduct/318608023542-meri",
   "title": "Мэри",
   "descr": "",
@@ -167,7 +167,7 @@
  },
  {
   "id": "923870260703",
-  "path": "/catalog/sbornye-bukety/sladkaya-vata",
+  "path": "/catalog/mixed-bouquets/sladkaya-vata",
   "old": "/sbornyye/tproduct/923870260703-sladkaya-vata",
   "title": "Сладкая вата",
   "descr": "",
@@ -186,7 +186,7 @@
  },
  {
   "id": "881410450812",
-  "path": "/catalog/monobukety/klassika",
+  "path": "/catalog/mono-bouquets/klassika",
   "old": "/hit/tproduct/881410450812-klassika",
   "title": "Классика",
   "descr": "",
@@ -209,7 +209,7 @@
  },
  {
   "id": "394357568422",
-  "path": "/catalog/sbornye-bukety/rozovaya-mechta",
+  "path": "/catalog/mixed-bouquets/rozovaya-mechta",
   "old": "/sbornyye/tproduct/394357568422-rozovaya-mechta",
   "title": "Розовая мечта",
   "descr": "Внимание! Только для самых нежных и утонченных особ",
@@ -229,7 +229,7 @@
  },
  {
   "id": "712770078982",
-  "path": "/catalog/sbornye-bukety/aprelskoe-utro",
+  "path": "/catalog/mixed-bouquets/aprelskoe-utro",
   "old": "/sbornyye/tproduct/712770078982-aprelskoe-utro",
   "title": "Апрельское утро",
   "descr": "Букет, в котором все пропитано весной",
@@ -266,7 +266,7 @@
  },
  {
   "id": "372470486342",
-  "path": "/catalog/monobukety/buket-khrizantem",
+  "path": "/catalog/mono-bouquets/buket-khrizantem",
   "old": "/hit/tproduct/372470486342-buket-hrizantem",
   "title": "Букет хризантем",
   "descr": "",
@@ -288,7 +288,7 @@
  },
  {
   "id": "986183680592",
-  "path": "/catalog/monobukety/novella",
+  "path": "/catalog/mono-bouquets/novella",
   "old": "/sale/tproduct/986183680592-novella",
   "title": "Новелла",
   "descr": "",
@@ -310,7 +310,7 @@
  },
  {
   "id": "891689731682",
-  "path": "/catalog/monobukety/romantika",
+  "path": "/catalog/mono-bouquets/romantika",
   "old": "/love/tproduct/891689731682-romantika",
   "title": "Романтика",
   "descr": "",
@@ -332,7 +332,7 @@
  },
  {
   "id": "188086999872",
-  "path": "/catalog/sbornye-bukety/pristsilla",
+  "path": "/catalog/mixed-bouquets/pristsilla",
   "old": "/premium/tproduct/188086999872-pristsilla",
   "title": "Присцилла",
   "descr": "Пионовидные розы - как синоним слова «роскошь»",
@@ -369,7 +369,7 @@
  },
  {
   "id": "295195714883",
-  "path": "/catalog/monobukety/kustovye-rozy-xxl",
+  "path": "/catalog/mono-bouquets/kustovye-rozy-xxl",
   "old": "/premium/tproduct/295195714883-kustovie-rozi-xxl",
   "title": "Кустовые розы XXL",
   "descr": "",
@@ -390,7 +390,7 @@
  },
  {
   "id": "933905787483",
-  "path": "/catalog/sbornye-bukety/rozovyy-krem",
+  "path": "/catalog/mixed-bouquets/rozovyy-krem",
   "old": "/hit/tproduct/933905787483-rozovii-krem",
   "title": "Розовый крем",
   "descr": "",
@@ -411,7 +411,7 @@
  },
  {
   "id": "829339784343",
-  "path": "/catalog/monobukety/farfor",
+  "path": "/catalog/mono-bouquets/farfor",
   "old": "/mono/tproduct/829339784343-farfor",
   "title": "Фарфор",
   "descr": "",
@@ -431,7 +431,7 @@
  },
  {
   "id": "518697126493",
-  "path": "/catalog/monobukety/yarkiy-miks-georginov",
+  "path": "/catalog/mono-bouquets/yarkiy-miks-georginov",
   "old": "/mono/tproduct/518697126493-yarkii-miks-georginov",
   "title": "Яркий микс георгинов",
   "descr": "",
@@ -452,7 +452,7 @@
  },
  {
   "id": "995824477313",
-  "path": "/catalog/monobukety/medovye-georginy-s",
+  "path": "/catalog/mono-bouquets/medovye-georginy-s",
   "old": "/mono/tproduct/995824477313-medovie-georgini-s",
   "title": "Медовые георгины S",
   "descr": "",
@@ -471,7 +471,7 @@
  },
  {
   "id": "491054258453",
-  "path": "/catalog/monobukety/yarkie-georginy",
+  "path": "/catalog/mono-bouquets/yarkie-georginy",
   "old": "/hit/tproduct/491054258453-yarkie-georgini",
   "title": "Яркие георгины",
   "descr": "",
@@ -491,7 +491,7 @@
  },
  {
   "id": "474351606983",
-  "path": "/catalog/hity/vozdushnye-georginy",
+  "path": "/catalog/bestsellers/vozdushnye-georginy",
   "old": "/hit/tproduct/474351606983-vozdushnie-georgini",
   "title": "Воздушные георгины",
   "descr": "",
@@ -510,7 +510,7 @@
  },
  {
   "id": "961004457813",
-  "path": "/catalog/monobukety/kompliment-iz-diantusov",
+  "path": "/catalog/mono-bouquets/kompliment-iz-diantusov",
   "old": "/sale/tproduct/961004457813-kompliment-iz-diantusov",
   "title": "Комплимент из диантусов",
   "descr": "",
@@ -530,7 +530,7 @@
  },
  {
   "id": "419799642332",
-  "path": "/catalog/kompozitsii/korzina-dlya-lyubimoy",
+  "path": "/catalog/arrangements/korzina-dlya-lyubimoy",
   "old": "/hit/tproduct/419799642332-korzina-dlya-lyubimoi",
   "title": "Корзина для любимой",
   "descr": "Сборная корзина с весенним цветояным составом",
@@ -550,7 +550,7 @@
  },
  {
   "id": "801260596712",
-  "path": "/catalog/kompozitsii/konfityur",
+  "path": "/catalog/arrangements/konfityur",
   "old": "/kompozitsii/tproduct/801260596712-konfityur",
   "title": "Конфитюр",
   "descr": "Композиция с самым весенним цветочным составом",
@@ -569,7 +569,7 @@
  },
  {
   "id": "922273675932",
-  "path": "/catalog/sbornye-bukety/lazur",
+  "path": "/catalog/mixed-bouquets/lazur",
   "old": "/sbornyye/tproduct/922273675932-lazur",
   "title": "Лазурь",
   "descr": "Огромный букет в небесно-голубых оттенках",
@@ -589,7 +589,7 @@
  },
  {
   "id": "532369593192",
-  "path": "/catalog/sbornye-bukety/rozovoe-shampanskoe",
+  "path": "/catalog/mixed-bouquets/rozovoe-shampanskoe",
   "old": "/sbornyye/tproduct/532369593192-rozovoe-shampanskoe",
   "title": "Розовое шампанское",
   "descr": "Огромный букет в классической бело-розовой цветовой гамме",
@@ -609,7 +609,7 @@
  },
  {
   "id": "934521774622",
-  "path": "/catalog/sbornye-bukety/shanel",
+  "path": "/catalog/mixed-bouquets/shanel",
   "old": "/sbornyye/tproduct/934521774622-shanel",
   "title": "Шанель",
   "descr": "Нежный букет с белоснежной розой в упаковке шоколадного оттенка",
@@ -628,7 +628,7 @@
  },
  {
   "id": "606761597482",
-  "path": "/catalog/kompozitsii/dzheyn-eyr",
+  "path": "/catalog/arrangements/dzheyn-eyr",
   "old": "/kompozitsii/tproduct/606761597482-dzhein-eir",
   "title": "Джейн Эйр",
   "descr": "Композиция в нежных оттенках в коробке",
@@ -647,7 +647,7 @@
  },
  {
   "id": "854769847882",
-  "path": "/catalog/kompozitsii/mermaid",
+  "path": "/catalog/arrangements/mermaid",
   "old": "/kompozitsii/tproduct/854769847882-mermaid",
   "title": "Мермаид",
   "descr": "Пышный бокс с цветами",
@@ -667,7 +667,7 @@
  },
  {
   "id": "980794142352",
-  "path": "/catalog/kompozitsii/khrustal",
+  "path": "/catalog/arrangements/khrustal",
   "old": "/kompozitsii/tproduct/980794142352-hrustal",
   "title": "Хрусталь",
   "descr": "Композиция, наполненная свежестью и легкостью",
@@ -687,7 +687,7 @@
  },
  {
   "id": "737110464762",
-  "path": "/catalog/monobukety/zhemchuzhnoe-ozherele",
+  "path": "/catalog/mono-bouquets/zhemchuzhnoe-ozherele",
   "old": "/mono/tproduct/737110464762-zhemchuzhnoe-ozherele",
   "title": "Жемчужное ожерелье",
   "descr": "Белоснежная французская роза. Красивый, но тяжелый и огромный букет, который точно вызовет улыбку на лице получательницы",
@@ -708,7 +708,7 @@
  },
  {
   "id": "548893507252",
-  "path": "/catalog/monobukety/utrennyaya-zvezda",
+  "path": "/catalog/mono-bouquets/utrennyaya-zvezda",
   "old": "/mono/tproduct/548893507252-utrennyaya-zvezda",
   "title": "Утренняя звезда",
   "descr": "Невероятно огромный букет для счастья в ее глазах!",
@@ -729,7 +729,7 @@
  },
  {
   "id": "511489950162",
-  "path": "/catalog/monobukety/miks-roz-xxl",
+  "path": "/catalog/mono-bouquets/miks-roz-xxl",
   "old": "/mono/tproduct/511489950162-miks-roz-xxl",
   "title": "МИКС РОЗ XXL",
   "descr": "Микс из кустовых роз в легкой упаковке",
@@ -751,7 +751,7 @@
  },
  {
   "id": "529592254792",
-  "path": "/catalog/monobukety/kompliment-dlya-nee",
+  "path": "/catalog/mono-bouquets/kompliment-dlya-nee",
   "old": "/mono/tproduct/529592254792-kompliment-dlya-nee",
   "title": "Комплимент для нее",
   "descr": "Букет красных французских роз",
@@ -771,7 +771,7 @@
  },
  {
   "id": "686546347422",
-  "path": "/catalog/monobukety/plamennye-chuvstva",
+  "path": "/catalog/mono-bouquets/plamennye-chuvstva",
   "old": "/mono/tproduct/686546347422-plamennie-chuvstva",
   "title": "Пламенные чувства",
   "descr": "Алые французские розы. Хит сезона!",
@@ -791,7 +791,7 @@
  },
  {
   "id": "516948233162",
-  "path": "/catalog/monobukety/51-roza",
+  "path": "/catalog/mono-bouquets/51-roza",
   "old": "/mono/tproduct/516948233162-51-roza",
   "title": "51 роза",
   "descr": "Несравненная классика",
@@ -812,7 +812,7 @@
  },
  {
   "id": "264129819722",
-  "path": "/catalog/monobukety/dlya-lyubimoy",
+  "path": "/catalog/mono-bouquets/dlya-lyubimoy",
   "old": "/mono/tproduct/264129819722-dlya-lyubimoi",
   "title": "Для любимой",
   "descr": "Красные розы в упаковке",
@@ -832,7 +832,7 @@
  },
  {
   "id": "652419383292",
-  "path": "/catalog/sbornye-bukety/pylnaya-roza",
+  "path": "/catalog/mixed-bouquets/pylnaya-roza",
   "old": "/sbornyye/tproduct/652419383292-pilnaya-roza",
   "title": "Пыльная роза",
   "descr": "Букет с французскими розами - классика для любых поводов",
@@ -870,7 +870,7 @@
  },
  {
   "id": "198102871082",
-  "path": "/catalog/sbornye-bukety/iskra-lyubvi",
+  "path": "/catalog/mixed-bouquets/iskra-lyubvi",
   "old": "/sbornyye/tproduct/198102871082-iskra-lyubvi",
   "title": "Искра любви",
   "descr": "Яркий букет для самых романтичных",
@@ -889,7 +889,7 @@
  },
  {
   "id": "314704468122",
-  "path": "/catalog/monobukety/mono-roz",
+  "path": "/catalog/mono-bouquets/mono-roz",
   "old": "/mono/tproduct/314704468122-mono-roz",
   "title": "МОНО РОЗ",
   "descr": "Кустовые розы в яркой расцветке",
@@ -910,7 +910,7 @@
  },
  {
   "id": "914007207052",
-  "path": "/catalog/monobukety/afrodita",
+  "path": "/catalog/mono-bouquets/afrodita",
   "old": "/mono/tproduct/914007207052-afrodita",
   "title": "Афродита",
   "descr": "Букет из пионовидных роз",
@@ -990,7 +990,7 @@
  },
  {
   "id": "438377974462",
-  "path": "/catalog/monobukety/miks-pionovidnykh-roz",
+  "path": "/catalog/mono-bouquets/miks-pionovidnykh-roz",
   "old": "/mono/tproduct/438377974462-miks-pionovidnih-roz",
   "title": "Микс пионовидных роз",
   "descr": "Микс из пионовидных кустовых роз - с таким букетом тяжело не угодить",
@@ -1009,7 +1009,7 @@
  },
  {
   "id": "363546654322",
-  "path": "/catalog/monobukety/kremovyy-desert",
+  "path": "/catalog/mono-bouquets/kremovyy-desert",
   "old": "/hit",
   "title": "Кремовый десерт",
   "descr": "Букет из белой французской розы в упаковке",
@@ -1029,7 +1029,7 @@
  },
  {
   "id": "826532916262",
-  "path": "/catalog/kompozitsii/white-flowers",
+  "path": "/catalog/arrangements/white-flowers",
   "old": "/premium/tproduct/826532916262-white-flowers",
   "title": "White flowers",
   "descr": "Огромная композиция для любого повода",
@@ -1050,7 +1050,7 @@
  },
  {
   "id": "910009919342",
-  "path": "/catalog/sbornye-bukety/belosnezhka",
+  "path": "/catalog/mixed-bouquets/belosnezhka",
   "old": "/sbornyye/tproduct/910009919342-belosnezhka",
   "title": "Белоснежка",
   "descr": "Самый воздушный и легкий букет в нашем каталоге",
@@ -1069,7 +1069,7 @@
  },
  {
   "id": "820558583932",
-  "path": "/catalog/monobukety/dzhuletta",
+  "path": "/catalog/mono-bouquets/dzhuletta",
   "old": "/mono/tproduct/820558583932-dzhuletta",
   "title": "Джульетта",
   "descr": "Кустовые розы никогда не выходят из моды",
@@ -1222,7 +1222,7 @@
  },
  {
   "id": "774715327482",
-  "path": "/catalog/hity/iskushenie",
+  "path": "/catalog/bestsellers/iskushenie",
   "old": "/love/tproduct/774715327482-iskushenie",
   "title": "Искушение",
   "descr": "Букет из алых французских роз",
@@ -1242,7 +1242,7 @@
  },
  {
   "id": "551124407523",
-  "path": "/catalog/monobukety/frantsiya",
+  "path": "/catalog/mono-bouquets/frantsiya",
   "old": "/1september/tproduct/551124407523-frantsiya",
   "title": "Франция",
   "descr": "",
@@ -1305,7 +1305,7 @@
  },
  {
   "id": "224354491632",
-  "path": "/catalog/kompozitsii/mechta",
+  "path": "/catalog/arrangements/mechta",
   "old": "/premium/tproduct/224354491632-mechta",
   "title": "Мечта",
   "descr": "Роскошная корзина как из «Pinterest”",
@@ -1326,7 +1326,7 @@
  },
  {
   "id": "123466815962",
-  "path": "/catalog/kompozitsii/ottenki-nezhnosti",
+  "path": "/catalog/arrangements/ottenki-nezhnosti",
   "old": "/love/tproduct/123466815962-ottenki-nezhnosti",
   "title": "Оттенки нежности",
   "descr": "",
@@ -1348,7 +1348,7 @@
  },
  {
   "id": "201722646872",
-  "path": "/catalog/kompozitsii/ottenki-lyubvi",
+  "path": "/catalog/arrangements/ottenki-lyubvi",
   "old": "/love/tproduct/201722646872-ottenki-lyubvi",
   "title": "Оттенки любви",
   "descr": "",
@@ -1370,7 +1370,7 @@
  },
  {
   "id": "942627381692",
-  "path": "/catalog/monobukety/mono-buket-iz-alykh-roz",
+  "path": "/catalog/mono-bouquets/mono-buket-iz-alykh-roz",
   "old": "/love/tproduct/942627381692-mono-buket-iz-alih-roz",
   "title": "Моно букет из алых роз",
   "descr": "",
@@ -1391,7 +1391,7 @@
  },
  {
   "id": "879140468312",
-  "path": "/catalog/akcii/kompliment-s-frantsuzskimi-rozami",
+  "path": "/catalog/sale/kompliment-s-frantsuzskimi-rozami",
   "old": "/sale/tproduct/879140468312-kompliment-s-frantsuzskimi-rozami",
   "title": "Комплимент с французскими розами",
   "descr": "Если нужно дополнение к подарку - то это лучший вариант",
@@ -1410,7 +1410,7 @@
  },
  {
   "id": "848807846922",
-  "path": "/catalog/sbornye-bukety/prirodnyy-stil",
+  "path": "/catalog/mixed-bouquets/prirodnyy-stil",
   "old": "/sale/tproduct/848807846922-prirodnii-stil",
   "title": "Природный стиль",
   "descr": "Букет, в котором все говорит о свежести",
@@ -1430,7 +1430,7 @@
  },
  {
   "id": "340290572372",
-  "path": "/catalog/monobukety/ameliya",
+  "path": "/catalog/mono-bouquets/ameliya",
   "old": "/premium/tproduct/340290572372-ameliya",
   "title": "Амелия",
   "descr": "",
@@ -1450,7 +1450,7 @@
  },
  {
   "id": "507487341232",
-  "path": "/catalog/sbornye-bukety/nezhnyy-shelk",
+  "path": "/catalog/mixed-bouquets/nezhnyy-shelk",
   "old": "/sbornyye/tproduct/507487341232-nezhnii-shelk",
   "title": "Нежный шелк",
   "descr": "",
@@ -1470,7 +1470,7 @@
  },
  {
   "id": "727334486062",
-  "path": "/catalog/monobukety/elizabet",
+  "path": "/catalog/mono-bouquets/elizabet",
   "old": "/mono/tproduct/727334486062-elizabet",
   "title": "Элизабет",
   "descr": "",
@@ -1489,7 +1489,7 @@
  },
  {
   "id": "845218516112",
-  "path": "/catalog/sbornye-bukety/premer",
+  "path": "/catalog/mixed-bouquets/premer",
   "old": "/premium/tproduct/845218516112-premer",
   "title": "Премьер",
   "descr": "",
@@ -1509,7 +1509,7 @@
  },
  {
   "id": "174817035303",
-  "path": "/catalog/monobukety/dofaminovoe-mono",
+  "path": "/catalog/mono-bouquets/dofaminovoe-mono",
   "old": "/mono/tproduct/174817035303-dofaminovoe-mono",
   "title": "Дофаминовое моно",
   "descr": "",
@@ -1528,7 +1528,7 @@
  },
  {
   "id": "373658727213",
-  "path": "/catalog/sbornye-bukety/dofaminovyy-buket",
+  "path": "/catalog/mixed-bouquets/dofaminovyy-buket",
   "old": "/premium/tproduct/373658727213-dofaminovii-buket",
   "title": "Дофаминовый букет",
   "descr": "",
@@ -1583,7 +1583,7 @@
  },
  {
   "id": "230935233113",
-  "path": "/catalog/monobukety/kustovye-rozy-xxl-pink",
+  "path": "/catalog/mono-bouquets/kustovye-rozy-xxl-pink",
   "old": "/premium/tproduct/230935233113-kustovie-rozi-xxl-pink",
   "title": "Кустовые розы XXL - Пинк",
   "descr": "",
@@ -1604,7 +1604,7 @@
  },
  {
   "id": "458213921303",
-  "path": "/catalog/monobukety/solnechnoe-kruzhevo",
+  "path": "/catalog/mono-bouquets/solnechnoe-kruzhevo",
   "old": "/hit/tproduct/458213921303-solnechnoe-kruzhevo",
   "title": "Солнечное кружево",
   "descr": "",
@@ -1624,7 +1624,7 @@
  },
  {
   "id": "977352282193",
-  "path": "/catalog/sbornye-bukety/vesennee-nebo",
+  "path": "/catalog/mixed-bouquets/vesennee-nebo",
   "old": "/sbornyye/tproduct/977352282193-vesennee-nebo",
   "title": "Весеннее небо",
   "descr": "",
@@ -1643,7 +1643,7 @@
  },
  {
   "id": "233114175293",
-  "path": "/catalog/monobukety/medovye-georginy-l",
+  "path": "/catalog/mono-bouquets/medovye-georginy-l",
   "old": "/mono/tproduct/233114175293-medovie-georgini-l",
   "title": "Медовые георгины L",
   "descr": "",
@@ -1662,7 +1662,7 @@
  },
  {
   "id": "570505140973",
-  "path": "/catalog/sbornye-bukety/letnie-podsolnukhi",
+  "path": "/catalog/mixed-bouquets/letnie-podsolnukhi",
   "old": "/sbornyye/tproduct/570505140973-letnie-podsolnuhi",
   "title": "Летние подсолнухи",
   "descr": "",
@@ -1681,7 +1681,7 @@
  },
  {
   "id": "252849753043",
-  "path": "/catalog/sbornye-bukety/kruzhevnaya-nezhnost",
+  "path": "/catalog/mixed-bouquets/kruzhevnaya-nezhnost",
   "old": "/sbornyye/tproduct/252849753043-kruzhevnaya-nezhnost",
   "title": "Кружевная нежность",
   "descr": "",
@@ -1700,7 +1700,7 @@
  },
  {
   "id": "946569047723",
-  "path": "/catalog/kompozitsii/kompliment-v-sumochke",
+  "path": "/catalog/arrangements/kompliment-v-sumochke",
   "old": "/sale/tproduct/946569047723-kompliment-v-sumochke",
   "title": "Комплимент в сумочке",
   "descr": "",
@@ -1720,7 +1720,7 @@
  },
  {
   "id": "294376114073",
-  "path": "/catalog/sbornye-bukety/krasnye-rozy",
+  "path": "/catalog/mixed-bouquets/krasnye-rozy",
   "old": "/sbornyye/tproduct/294376114073-krasnie-rozi",
   "title": "Красные розы",
   "descr": "",
@@ -1739,7 +1739,7 @@
  },
  {
   "id": "224122408723",
-  "path": "/catalog/sbornye-bukety/kompliment-s-podsolnukhom",
+  "path": "/catalog/mixed-bouquets/kompliment-s-podsolnukhom",
   "old": "/sale/tproduct/224122408723-kompliment-s-podsolnuhom",
   "title": "Комплимент с подсолнухом",
   "descr": "",
@@ -1759,7 +1759,7 @@
  },
  {
   "id": "751201618953",
-  "path": "/catalog/kompozitsii/kompliment-v-sumochke-2",
+  "path": "/catalog/arrangements/kompliment-v-sumochke-2",
   "old": "/sale/tproduct/751201618953-kompliment-v-sumochke-2",
   "title": "Комплимент в сумочке 2",
   "descr": "",
@@ -1893,7 +1893,7 @@
  },
  {
   "id": "578719542193",
-  "path": "/catalog/sbornye-bukety/rozovaya-klassika",
+  "path": "/catalog/mixed-bouquets/rozovaya-klassika",
   "old": "/sbornyye/tproduct/578719542193-rozovaya-klassika",
   "title": "Розовая классика",
   "descr": "",
@@ -1912,7 +1912,7 @@
  },
  {
   "id": "323096300243",
-  "path": "/catalog/monobukety/nezhnyy-miks-kustovykh-roz",
+  "path": "/catalog/mono-bouquets/nezhnyy-miks-kustovykh-roz",
   "old": "/mono/tproduct/323096300243-nezhnii-miks-kustovih-roz",
   "title": "Нежный микс кустовых роз",
   "descr": "",
@@ -1931,7 +1931,7 @@
  },
  {
   "id": "917872552553",
-  "path": "/catalog/monobukety/mirabella",
+  "path": "/catalog/mono-bouquets/mirabella",
   "old": "/mono/tproduct/917872552553-mirabella",
   "title": "Мирабелла",
   "descr": "",
@@ -1952,7 +1952,7 @@
  },
  {
   "id": "870385062833",
-  "path": "/catalog/monobukety/dzhuliya",
+  "path": "/catalog/mono-bouquets/dzhuliya",
   "old": "/premium/tproduct/870385062833-dzhuliya",
   "title": "Джулия",
   "descr": "",
@@ -1973,7 +1973,7 @@
  },
  {
   "id": "648478009843",
-  "path": "/catalog/monobukety/kustovye-rozy",
+  "path": "/catalog/mono-bouquets/kustovye-rozy",
   "old": "/sale/tproduct/648478009843-kustovie-rozi",
   "title": "Кустовые розы",
   "descr": "",

@@ -11,7 +11,7 @@ import { products } from '../../lib/catalog';
 import { catalogCards, chip, partById, photo } from '../../lib/catalog';
 
 export function getStaticPaths() {
-  return CATALOGS.map((c) => ({ params: { slug: c.slug }, props: { c } }));
+  return CATALOGS.filter((c) => c.href.startsWith('/catalog/')).map((c) => ({ params: { slug: c.slug }, props: { c } }));
 }
 const { c } = Astro.props as { c: (typeof CATALOGS)[number] };
 const cards = catalogCards(c.part);

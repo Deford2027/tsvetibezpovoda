@@ -8,16 +8,16 @@ import { u } from '../lib/url';
 const live = products.filter((p) => p.price && p.images.length);
 const loose = live.filter((p) => !CATALOGS.some((c) => p.path.startsWith(`/catalog/${c.slug}/`)));
 const pages = [
-  { label: 'О компании', href: '/o-kompanii' },
-  { label: 'Акции', href: '/akcii' },
-  { label: 'Корпоративным клиентам', href: '/korporativnym-klientam' },
-  { label: 'Гарантии', href: '/garantii' },
+  { label: 'О компании', href: '/about' },
+  { label: 'Акции', href: '/sale' },
+  { label: 'Корпоративным клиентам', href: '/corporate' },
+  { label: 'Гарантии', href: '/guarantees' },
   { label: 'Доставка и оплата', href: '/delivery' },
   { label: 'Контакты', href: '/contacts' },
   ...OCCASIONS.map((o) => ({ label: o.title, href: `/${o.slug}` })),
-  { label: 'Реквизиты', href: '/rekvizity' },
+  { label: 'Реквизиты', href: '/company-details' },
   { label: 'Политика конфиденциальности', href: '/privacy' },
-  { label: 'Пользовательское соглашение', href: '/soglashenie' },
+  { label: 'Пользовательское соглашение', href: '/terms' },
 ];
 ---
 <Base title={`Карта сайта – ${SITE.name}`} description={`Все разделы и букеты сайта «${SITE.name}».`}>
@@ -34,7 +34,7 @@ const pages = [
 
     <h2 class="km__h">Каталог</h2>
     <div class="km__cats">
-      {[...CATALOGS.map((c) => ({ title: c.title, href: `/catalog/${c.slug}`, items: live.filter((p) => p.path.startsWith(`/catalog/${c.slug}/`)) })),
+      {[...CATALOGS.map((c) => ({ title: c.title, href: c.href, items: live.filter((p) => p.path.startsWith(`/catalog/${c.slug}/`)) })),
         ...(loose.length ? [{ title: 'Другие букеты', href: '/catalog', items: loose }] : [])]
         .filter((c) => c.items.length).map((c) => (
         <div class="km__cat">

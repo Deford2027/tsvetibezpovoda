@@ -11,12 +11,12 @@ import { IconArrow, IconChevron, IconClose, IconFlower, IconPhone, IconSearch, S
 
 const LINKS = [
   { label: 'Каталог цветов', href: '/catalog' },
-  { label: 'Акции', href: '/akcii' },
-  { label: 'Корпоративным клиентам', href: '/korporativnym-klientam' },
+  { label: 'Акции', href: '/sale' },
+  { label: 'Корпоративным клиентам', href: '/corporate' },
   { label: 'Доставка и оплата', href: '/delivery' },
-  { label: 'Гарантии', href: '/garantii' },
+  { label: 'Гарантии', href: '/guarantees' },
   { label: 'Отзывы', href: '/#rev' },
-  { label: 'О компании', href: '/o-kompanii' },
+  { label: 'О компании', href: '/about' },
   { label: 'Контакты', href: '/contacts' },
 ];
 
