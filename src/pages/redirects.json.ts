@@ -1,13 +1,12 @@
-// 301 «старый адрес донора → новый» для переезда домена (nginx читает этот файл при выводе в бой).
+// 301 «старый адрес донора → новый» для переезда домена. Из этого файла scripts/nginx-redirects.mjs собирает карту nginx.
+// Адреса, которые не меняются (/catalog, /contacts, /mom и т. п.), сюда не входят: переадресация на себя – петля.
 import type { APIRoute } from 'astro';
 import { products } from '../lib/catalog';
 import { CATALOGS } from '../lib/site';
 
 export const GET: APIRoute = () => {
-  const map: Record<string, string> = { '/catalog': '/catalog', '/contacts': '/contacts', '/delivery': '/delivery', '/rekvizity': '/rekvizity', '/privacy': '/privacy' };
-  for (const c of CATALOGS) map[c.old] = `/catalog/${c.slug}`;
+  const map: Record<string, string> = { '/page64910139.html': '/', '/success-page': '/thanks' };
+  for (const c of CATALOGS) if (c.old !== `/catalog/${c.slug}`) map[c.old] = `/catalog/${c.slug}`;
   for (const p of products) if (p.old && p.price && p.images.length) map[p.old] = p.path;
-  // Страницы поводов на стадии 1 не делаем – ведут в общий каталог.
-  for (const o of ['/1september', '/mom', '/love', '/march', '/wedding']) map[o] = '/catalog';
   return new Response(JSON.stringify(map, null, 1), { headers: { 'Content-Type': 'application/json' } });
 };

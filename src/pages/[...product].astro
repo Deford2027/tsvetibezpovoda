@@ -6,7 +6,7 @@ import SectionHead from '../components/SectionHead.astro';
 import Reviews from '../components/Reviews.astro';
 import ProductBuy from '../islands/ProductBuy';
 import Catalog from '../islands/Catalog';
-import { products, toCard, partById, addonParts, inPart, rub, type Product } from '../lib/catalog';
+import { products, toCard, partById, occasionParts, addonParts, inPart, rub, type Product } from '../lib/catalog';
 import { CATALOGS, SITE } from '../lib/site';
 import { FREE_FROM } from '../lib/delivery';
 import { u } from '../lib/url';
@@ -25,7 +25,7 @@ const similar = products
 const addons = isAddon ? [] : products
   .filter((x) => x.price && x.images.length && addonParts.some((id) => inPart(x, id)))
   .slice(0, 12).map(toCard);
-const partNames = p.parts.map((id) => partById.get(id)?.title).filter(Boolean);
+const partNames = p.parts.filter((id) => !occasionParts.has(id)).map((id) => partById.get(id)?.title).filter(Boolean);
 const title = p.seoTitle || `${p.title} – купить с доставкой по Курску за ${rub(p.price!)} | ${SITE.name}`;
 const desc = p.seoDescr || `${p.title}${p.descr ? ': ' + p.descr.toLowerCase() : ''}. ${rub(p.price!)}. Доставка по Курску за 60 минут, открытка и средство по уходу в подарок.`;
 const ld = {

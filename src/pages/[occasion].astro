@@ -1,0 +1,47 @@
+---
+// Страницы поводов старого сайта по тем же адресам (/mom, /love, /1september, /march, /wedding).
+// Подборки – разделы магазина; «8 марта» и «Свадебные» на старом сайте пусты, там показываем хиты с честным заголовком.
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import FinalCta from '../components/FinalCta.astro';
+import ContactCard from '../components/ContactCard.astro';
+import Catalog from '../islands/Catalog';
+import { OCCASIONS, SITE } from '../lib/site';
+import { catalogCards, PART, photo } from '../lib/catalog';
+import { u } from '../lib/url';
+
+export function getStaticPaths() {
+  return OCCASIONS.map((o) => ({ params: { occasion: o.slug }, props: { o } }));
+}
+const { o } = Astro.props as { o: (typeof OCCASIONS)[number] };
+const own = catalogCards(o.part);
+const cards = own.length ? own : catalogCards(PART.hits);
+const min = cards.length ? Math.min(...cards.map((x) => x.price)).toLocaleString('ru-RU') : '';
+const desc = own.length
+  ? `${o.h1}: ${own.length} вариантов от ${min} ₽. Доставка за 60 минут, открытка и средство по уходу в подарок.`
+  : `${o.h1}: поможем подобрать букет под ваши пожелания. Доставка за 60 минут, открытка и средство по уходу в подарок.`;
+---
+<Base title={`${o.h1} – ${SITE.name}`} description={desc}>
+  <PageHero
+    small
+    crumbs={[{ label: 'Главная', href: '/' }, { label: 'Каталог', href: '/catalog' }, { label: o.title }]}
+    title={o.h1}
+    text={o.text}
+    image={cards[0]?.img ?? photo(0)}
+    buttons={[{ label: own.length ? 'Смотреть букеты' : 'Помогите выбрать', ...(own.length ? { href: `/${o.slug}#list` } : { lead: true }) }, own.length ? { label: 'Помогите выбрать', lead: true } : { label: 'Смотреть букеты', href: `/${o.slug}#list` }]}
+  />
+  <section class="section container" id="list">
+    <SectionHead title={own.length ? o.title : 'Популярные букеты'} sub={own.length ? `С доставкой по Курску – ${own.length} шт., от ${min} ₽` : 'Отдельной подборки сейчас нет – вот букеты, которые заказывают чаще всего'} />
+    <nav class="oc hscroll-m" aria-label="Поводы">
+      <a class="chip" href={u('/catalog')}>Весь каталог</a>
+      {OCCASIONS.map((x) => <a class:list={['chip', { 'is-active': x.slug === o.slug }]} href={u(`/${x.slug}`)} aria-current={x.slug === o.slug ? 'page' : undefined}>{x.title}</a>)}
+    </nav>
+    <Catalog client:load cards={cards} step={16} />
+  </section>
+  <FinalCta />
+  <ContactCard />
+</Base>
+<style>
+  .oc { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+</style>

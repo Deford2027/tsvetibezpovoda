@@ -48,8 +48,9 @@ const rows = [
   @media (max-width: 1023px) {
     .cc { gap: 10px; }
     .cc__head { flex-direction: column; align-items: flex-start; margin-bottom: 4px; gap: 16px; }
-    .cc__btns { width: 100%; }
-    .cc__btns .btn { flex: 1; }
+    .cc__btns { width: 100%; flex-wrap: nowrap; gap: 8px; }
+    .cc__btns .btn { flex: 1; min-width: 0; padding: 0 10px; }
+    .cc__soc { width: 48px; height: 48px; flex: none; }
     .cc__cards { grid-template-columns: 1fr; gap: 10px; }
     .cc__cards li { grid-template-columns: 48px 1fr; column-gap: 14px; row-gap: 2px; padding: 16px; border-radius: var(--radius-l); }
     .cc__ico { grid-row: span 2; margin: 0; }

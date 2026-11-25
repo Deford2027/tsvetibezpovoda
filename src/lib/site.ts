@@ -1,4 +1,5 @@
 // Контакты и навигация – одно место для шапки, меню, подвала и страниц. Всё – с tsvetibezpovoda.ru (27.10.2026).
+import occasions from '../data/occasions.json';
 import sections from '../data/sections.json';
 
 export const SITE = {
@@ -11,11 +12,14 @@ export const SITE = {
   owner: 'ИП Логвинова Надежда Игоревна',
   inn: '463245115099',
   ogrnip: '323460000000097',
+  /** Счётчик Яндекс Метрики старого сайта; ставится только в боевой сборке (Base.astro). */
+  metrika: 102229305,
   yandexOrg: 'https://yandex.ru/profile/137449738710',
 };
 
 export const SOCIALS = [
   { id: 'vk', label: 'ВКонтакте', href: 'https://vk.me/bouquet046' },
+  { id: 'wa', label: 'WhatsApp', href: 'https://wa.me/79065745745' },
   { id: 'tg', label: 'Telegram', href: 'https://t.me/bouquet046' },
 ] as const;
 
@@ -42,6 +46,9 @@ export const CATALOGS = sections.map((s) => ({
   heading: s.title,
   text: `${s.title} от «Цветы без повода». Доставим по Курску за 60 минут, к каждому заказу – открытка и средство по уходу за букетом.`,
 }));
+
+/** Страницы поводов – адреса и разделы магазина старого сайта (src/data/occasions.json). */
+export const OCCASIONS = occasions;
 
 /** Верхнее меню – полный набор эталона Milovini; «Авторские букеты» эталона = «Премиум» донора. */
 export const NAV = [
@@ -70,7 +77,7 @@ export const FOOTER = {
     { label: 'Доставка и оплата', href: '/delivery' },
     { label: 'Контакты', href: '/contacts' },
   ],
-  catalog: [{ label: 'Все букеты', href: '/catalog' }, ...CATALOGS.map((c) => ({ label: c.title, href: `/catalog/${c.slug}` }))],
+  catalog: [{ label: 'Все букеты', href: '/catalog' }, ...CATALOGS.map((c) => ({ label: c.title, href: `/catalog/${c.slug}` })), ...OCCASIONS.map((o) => ({ label: o.title, href: `/${o.slug}` }))],
   buyers: [
     { label: 'Акции', href: '/akcii' },
     { label: 'Доставка и оплата', href: '/delivery' },

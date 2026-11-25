@@ -7,6 +7,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./dist:/usr/share/nginx/html:ro
+      - ./redirects:/etc/nginx/cvety:ro
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     read_only: true
     tmpfs: [/tmp]

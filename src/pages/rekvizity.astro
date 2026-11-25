@@ -1,5 +1,5 @@
 ---
-// Реквизиты – как на /rekvizity донора: юридический адрес и телефон там не заполнены.
+// Реквизиты – как на /rekvizity старого сайта (сверено 25.11.2026).
 import Base from '../layouts/Base.astro';
 import Crumbs from '../components/Crumbs.astro';
 import { SITE } from '../lib/site';
@@ -11,7 +11,7 @@ import { SITE } from '../lib/site';
     <dl>
       <div><dt>Продавец</dt><dd>{SITE.owner}</dd></div>
       <div><dt>ИНН / ОГРНИП</dt><dd>{SITE.inn} / {SITE.ogrnip}</dd></div>
-      <div><dt>Адрес студии</dt><dd>{SITE.city}, {SITE.address}</dd></div>
+      <div><dt>Юридический адрес</dt><dd>{SITE.city}, {SITE.address}</dd></div>
       <div><dt>Телефон</dt><dd><a href={SITE.phoneHref}>{SITE.phone}</a></dd></div>
     </dl>
   </article>

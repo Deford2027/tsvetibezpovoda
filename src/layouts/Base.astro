@@ -7,6 +7,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Sheets from '../islands/Sheets';
 import StickyOrder from '../islands/StickyOrder';
+import { SITE } from '../lib/site';
 import { u } from '../lib/url';
 
 interface Props {
@@ -20,6 +21,7 @@ interface Props {
 const { title, description = 'Цветочный салон «Цветы без повода» в Курске: сборные и монобукеты, композиции, премиум. Доставка по Курску за 60 минут, открытка и средство по уходу – в подарок.', image, noSticky = false, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 // Показная копия на GitHub Pages закрыта от поиска, чтобы не дублировать живой tsvetibezpovoda.ru.
+const metrika = import.meta.env.PUBLIC_NOINDEX === '1' ? 0 : SITE.metrika; // на показных копиях счётчик не ставим
 const closed = noindex || import.meta.env.PUBLIC_NOINDEX === '1';
 ---
 <!doctype html>
@@ -41,6 +43,7 @@ const closed = noindex || import.meta.env.PUBLIC_NOINDEX === '1';
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    {metrika > 0 && <script is:inline set:html={`(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');ym(${metrika},'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});`} />}
   </head>
   <body>
     <a class="sr-only" href="#main">К содержимому</a>

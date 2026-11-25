@@ -37,6 +37,8 @@ jobs:
           # второй вход – СВЕРХ админ Артёма; нет секретов – один вход владельца и предупреждение
           SVERH_LOGIN: ${{ secrets.SVERH_LOGIN }}
           SVERH_PASS: ${{ secrets.SVERH_PASS }}
+      # отчёты – только на показной копии, на боевой сайт не попадают
+      - run: cp -r otchety dist/
       - run: touch dist/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

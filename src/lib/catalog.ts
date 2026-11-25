@@ -1,4 +1,5 @@
 import productsJson from '../data/products.json';
+import occasions from '../data/occasions.json';
 import blockPhotos from '../data/block-photos.json';
 import partsJson from '../data/parts.json';
 
@@ -89,8 +90,10 @@ export function chip(id: string, title?: string, withChildren = true): Chip {
     children: withChildren && p.children.length ? p.children.map((c) => chip(c.id, undefined, false)) : undefined,
   };
 }
+/** Разделы поводов: у них свои страницы, в фильтрах каталога и на карточке товара их нет (как на старом сайте). */
+export const occasionParts = new Set(occasions.map((o) => o.part));
 /** Чипы общего каталога – разделы магазина донора, в которых есть товары (пустые «Свадебные букеты» не показываем). */
-export const allChips = (): Chip[] => parts.filter((p) => products.some((x) => inPart(x, p.id))).map((p) => chip(p.id));
+export const allChips = (): Chip[] => parts.filter((p) => !occasionParts.has(p.id) && products.some((x) => inPart(x, p.id))).map((p) => chip(p.id));
 
 /** Товары страницы-каталога: раздел с подразделами. */
 export function catalogCards(part: string): Card[] {

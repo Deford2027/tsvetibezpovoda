@@ -3,7 +3,7 @@
 import Base from '../layouts/Base.astro';
 import Crumbs from '../components/Crumbs.astro';
 import { products } from '../lib/catalog';
-import { CATALOGS, SITE } from '../lib/site';
+import { CATALOGS, OCCASIONS, SITE } from '../lib/site';
 import { u } from '../lib/url';
 const live = products.filter((p) => p.price && p.images.length);
 const loose = live.filter((p) => !CATALOGS.some((c) => p.path.startsWith(`/catalog/${c.slug}/`)));
@@ -14,6 +14,7 @@ const pages = [
   { label: 'Гарантии', href: '/garantii' },
   { label: 'Доставка и оплата', href: '/delivery' },
   { label: 'Контакты', href: '/contacts' },
+  ...OCCASIONS.map((o) => ({ label: o.title, href: `/${o.slug}` })),
   { label: 'Реквизиты', href: '/rekvizity' },
   { label: 'Политика конфиденциальности', href: '/privacy' },
   { label: 'Пользовательское соглашение', href: '/soglashenie' },

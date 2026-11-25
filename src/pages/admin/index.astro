@@ -5,7 +5,7 @@
 // Группы сворачиваются, состояние – в localStorage (правило владельца 24.10.2026, references/etalony.md admin-builder).
 import Admin from '../../layouts/Admin.astro';
 import { products, type Product } from '../../lib/catalog';
-import { CATALOGS } from '../../lib/site';
+import { CATALOGS, OCCASIONS } from '../../lib/site';
 import { u } from '../../lib/url';
 
 const site = (p: string) => new URL(u(p), Astro.site).href;
@@ -15,6 +15,7 @@ const inner = [
   { name: 'О компании', path: '/o-kompanii' }, { name: 'Акции', path: '/akcii' },
   { name: 'Корпоративным клиентам', path: '/korporativnym-klientam' }, { name: 'Гарантии', path: '/garantii' },
   { name: 'Доставка и оплата', path: '/delivery' }, { name: 'Контакты', path: '/contacts' },
+  ...OCCASIONS.map((o) => ({ name: o.title, path: `/${o.slug}` })),
 ];
 const legal = [{ name: 'Политика конфиденциальности', path: '/privacy' }, { name: 'Пользовательское соглашение', path: '/soglashenie' }, { name: 'Реквизиты', path: '/rekvizity' }];
 const tech = [{ name: 'Оформление заказа', path: '/order' }, { name: 'Избранное', path: '/favorites' }, { name: 'Спасибо', path: '/thanks' }, { name: 'Карта сайта', path: '/karta-sayta' }, { name: 'Страница не найдена', path: '/404' }];
