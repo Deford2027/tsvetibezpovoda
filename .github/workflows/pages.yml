@@ -28,6 +28,8 @@ jobs:
           PUBLIC_BASE: /tsvetibezpovoda
           PUBLIC_SITE_URL: https://deford2027.github.io/tsvetibezpovoda
           PUBLIC_NOINDEX: '1'
+          # своего сервера у Pages нет – заявки принимает стенд
+          PUBLIC_LEAD_URL: https://cvety.168.113.179.49.nip.io/lead
       # весь личный кабинет – за логином и паролем; без секретов шаг падает и открытая админка не публикуется
       - name: Закрыть админку логином и паролем
         run: node scripts/lock-admin.mjs

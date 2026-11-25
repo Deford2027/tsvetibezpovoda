@@ -28,6 +28,7 @@ services:
     env_file: .env
     environment:
       PYTHONUNBUFFERED: "1"
+      ORIGINS: https://deford2027.github.io
       TG_API: https://80.74.24.46
     volumes:
       - ./leads.py:/app/leads.py:ro
