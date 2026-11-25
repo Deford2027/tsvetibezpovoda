@@ -12,7 +12,7 @@ const site = (p: string) => new URL(u(p), Astro.site).href;
 const live = products.filter((p) => p.price && p.images.length);
 const inCatalog = (part: string) => live.filter((p) => p.parts.includes(part));
 const inner = [
-  { name: 'О компании', path: '/about' }, { name: 'Акции', path: '/sale' },
+  { name: 'О компании', path: '/about' }, { name: 'Акции', path: '/catalog/sale' },
   { name: 'Корпоративным клиентам', path: '/corporate' }, { name: 'Гарантии', path: '/guarantees' },
   { name: 'Доставка и оплата', path: '/delivery' }, { name: 'Контакты', path: '/contacts' },
   ...OCCASIONS.map((o) => ({ name: o.title, path: `/${o.slug}` })),

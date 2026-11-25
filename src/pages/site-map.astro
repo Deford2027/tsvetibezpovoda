@@ -9,7 +9,7 @@ const live = products.filter((p) => p.price && p.images.length);
 const loose = live.filter((p) => !CATALOGS.some((c) => p.path.startsWith(`/catalog/${c.slug}/`)));
 const pages = [
   { label: 'О компании', href: '/about' },
-  { label: 'Акции', href: '/sale' },
+  { label: 'Акции', href: '/catalog/sale' },
   { label: 'Корпоративным клиентам', href: '/corporate' },
   { label: 'Гарантии', href: '/guarantees' },
   { label: 'Доставка и оплата', href: '/delivery' },

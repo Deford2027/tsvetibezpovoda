@@ -1,5 +1,5 @@
 {
- "/akcii": "/sale",
+ "/akcii": "/catalog/sale",
  "/o-kompanii": "/about",
  "/korporativnym-klientam": "/corporate",
  "/garantii": "/guarantees",
@@ -10,8 +10,7 @@
  "/catalog/sbornye-bukety": "/catalog/mixed-bouquets",
  "/catalog/kompozitsii": "/catalog/arrangements",
  "/catalog/hity": "/catalog/bestsellers",
- "/catalog/akcii": "/sale",
- "/catalog/sale": "/sale",
+ "/catalog/akcii": "/catalog/sale",
  "/catalog/sbornye-bukety/orekhovyy-krem": "/catalog/mixed-bouquets/orekhovyy-krem",
  "/catalog/sbornye-bukety/rannee-utro": "/catalog/mixed-bouquets/rannee-utro",
  "/catalog/monobukety/rozovyy-kompliment": "/catalog/mono-bouquets/rozovyy-kompliment",

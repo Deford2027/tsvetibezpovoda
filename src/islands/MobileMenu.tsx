@@ -11,7 +11,7 @@ import { IconArrow, IconChevron, IconClose, IconFlower, IconPhone, IconSearch, S
 
 const LINKS = [
   { label: 'Каталог цветов', href: '/catalog' },
-  { label: 'Акции', href: '/sale' },
+  { label: 'Акции', href: '/catalog/sale' },
   { label: 'Корпоративным клиентам', href: '/corporate' },
   { label: 'Доставка и оплата', href: '/delivery' },
   { label: 'Гарантии', href: '/guarantees' },

@@ -43,8 +43,7 @@ export const FEATURES = [
 /** Страницы-каталоги: раздел магазина Тильды (uid) → ЧПУ. Источник – src/data/sections.json (его же читает npm run data). */
 export const CATALOGS = sections.map((s) => ({
   ...s,
-  /** Адрес раздела; «Акции» – отдельная страница /sale, а не раздел каталога. */
-  href: 'page' in s && s.page ? s.page : `/catalog/${s.slug}`,
+  href: `/catalog/${s.slug}`,
   crumb: s.title,
   h1: `${s.title} с доставкой по Курску`,
   heading: s.title,
@@ -57,7 +56,7 @@ export const OCCASIONS = occasions;
 /** Верхнее меню – полный набор эталона Milovini; «Авторские букеты» эталона = «Премиум» донора. */
 export const NAV = [
   { label: 'Главная', href: '/' },
-  { label: 'Акции', href: '/sale' },
+  { label: 'Акции', href: '/catalog/sale' },
   { label: 'Корпоративным клиентам', href: '/corporate' },
   { label: 'Доставка', href: '/delivery' },
   { label: 'Каталог цветов', href: '/catalog' },
@@ -72,7 +71,7 @@ export const FOOTER = {
   menu: [
     { label: 'Главная', href: '/' },
     { label: 'О компании', href: '/about' },
-    { label: 'Акции', href: '/sale' },
+    { label: 'Акции', href: '/catalog/sale' },
     { label: 'Корпоративным клиентам', href: '/corporate' },
     { label: 'Каталог цветов', href: '/catalog' },
     { label: 'Отзывы', href: '/#rev' },
@@ -83,7 +82,7 @@ export const FOOTER = {
   ],
   catalog: [{ label: 'Все букеты', href: '/catalog' }, ...CATALOGS.map((c) => ({ label: c.title, href: c.href })), ...OCCASIONS.map((o) => ({ label: o.title, href: `/${o.slug}` }))],
   buyers: [
-    { label: 'Акции', href: '/sale' },
+    { label: 'Акции', href: '/catalog/sale' },
     { label: 'Доставка и оплата', href: '/delivery' },
     { label: 'Избранное', href: '/favorites' },
     { label: 'Корзина', href: '/order' },

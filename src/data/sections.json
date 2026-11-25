@@ -4,5 +4,5 @@
  { "slug": "arrangements", "old": "/kompozitsii", "part": "791447291042", "title": "Композиции" },
  { "slug": "premium", "old": "/premium", "part": "877159492202", "title": "Премиум" },
  { "slug": "bestsellers", "old": "/hit", "part": "313851531702", "title": "Хиты" },
- { "slug": "sale", "old": "/sale", "part": "679504980532", "title": "Акции", "page": "/sale" }
+ { "slug": "sale", "old": "/sale", "part": "679504980532", "title": "Акции" }
 ]

@@ -10,8 +10,9 @@ import { CATALOGS, SITE } from '../../lib/site';
 import { products } from '../../lib/catalog';
 import { catalogCards, chip, partById, photo } from '../../lib/catalog';
 
+// «Акции» – своя страница catalog/sale.astro.
 export function getStaticPaths() {
-  return CATALOGS.filter((c) => c.href.startsWith('/catalog/')).map((c) => ({ params: { slug: c.slug }, props: { c } }));
+  return CATALOGS.filter((c) => c.slug !== 'sale').map((c) => ({ params: { slug: c.slug }, props: { c } }));
 }
 const { c } = Astro.props as { c: (typeof CATALOGS)[number] };
 const cards = catalogCards(c.part);

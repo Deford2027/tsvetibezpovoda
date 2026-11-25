@@ -19,7 +19,7 @@ export const menuTiles: MenuTile[] = [
   tile('Композиции', '/catalog/arrangements', PART.compositions),
   tile('Премиум', '/catalog/premium', PART.premium),
   tile('Хиты', '/catalog/bestsellers', PART.hits),
-  tile('Акции', '/sale', PART.sale),
+  tile('Акции', '/catalog/sale', PART.sale),
   tile('Розы', `/catalog?part=${PART.roses}`, PART.roses),
   tile('Хризантемы', `/catalog?part=${PART.chrysanthemums}`, PART.chrysanthemums),
 ];
