@@ -18,6 +18,29 @@ services:
       driver: json-file
       options: { max-size: "10m", max-file: "3" }
     networks: [proxy]
+  # Приёмник заявок -> Telegram через посредника на claude-сервере. Секреты – /opt/cvety/.env (600).
+  cvety-leads:
+    image: python:3.12-alpine
+    container_name: cvety-leads
+    restart: unless-stopped
+    user: "1000:1000"
+    command: ["python3", "-I", "/app/leads.py"]
+    env_file: .env
+    environment:
+      PYTHONUNBUFFERED: "1"
+      TG_API: https://80.74.24.46
+    volumes:
+      - ./leads.py:/app/leads.py:ro
+      - ./leads-data:/data
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    mem_limit: 64m
+    logging:
+      driver: json-file
+      options: { max-size: "5m", max-file: "2" }
+    networks: [proxy]
 networks:
   proxy:
     name: caddy

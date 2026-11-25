@@ -9,11 +9,38 @@ export const FORM_SERVICES = [
 ];
 export const TILDA = { projectId: '12504825', pageId: '64910143', formsKey: 'fea9d6cebdc70108f340bd1112504825' };
 
+// Свой приёмник (deploy/stend/leads.py → Telegram). Адрес задаёт сборка; на Pages его нет – остаётся только Тильда.
+const LEAD_URL = import.meta.env.PUBLIC_LEAD_URL as string | undefined;
+
+async function sendOwn(formName: string, fields: Record<string, string>): Promise<boolean> {
+  if (!LEAD_URL) return false;
+  const ctl = new AbortController();
+  const timer = setTimeout(() => ctl.abort(), 12000);
+  try {
+    const r = await fetch(LEAD_URL, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: ctl.signal,
+      body: JSON.stringify({ form: formName, fields }),
+    });
+    return r.ok;
+  } catch {
+    return false;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/** Заявка уходит и в свой приёмник, и в Тильду; успех – ответ своего приёмника (ответ Тильды не читается), без него – Тильда. */
+export async function sendForm(formName: string, fields: Record<string, string>): Promise<boolean> {
+  const all = Object.fromEntries(Object.entries({ ...fields, ...leadFields() }).filter(([, v]) => v));
+  const [own, tilda] = await Promise.all([sendOwn(formName, all), sendTilda(formName, all)]);
+  return LEAD_URL ? own : tilda;
+}
+
 /**
  * Шлёт поля формы. Приёмник Тильды не отдаёт CORS-заголовки, поэтому запрос no-cors:
  * ответ не читается, успехом считаем то, что запрос ушёл без сетевой ошибки.
  */
-export async function sendForm(formName: string, fields: Record<string, string>): Promise<boolean> {
+async function sendTilda(formName: string, fields: Record<string, string>): Promise<boolean> {
   const body = new URLSearchParams();
   FORM_SERVICES.forEach((s) => body.append('formservices[]', s));
   body.append('tildaspec-formname', formName);
@@ -21,7 +48,7 @@ export async function sendForm(formName: string, fields: Record<string, string>)
   body.append('tildaspec-pageid', TILDA.pageId);
   body.append('tildaspec-formskey', TILDA.formsKey);
   body.append('tildaspec-referer', location.href);
-  for (const [k, v] of Object.entries({ ...fields, ...leadFields() })) if (v) body.append(k, v);
+  for (const [k, v] of Object.entries(fields)) body.append(k, v);
   try {
     await fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body });
     return true;
