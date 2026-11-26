@@ -9,6 +9,9 @@ DB = os.environ.get('LEAD_DB', '/data/leads.db')
 ORIGINS = os.environ.get('ORIGINS', '').split()
 ADMIN_LOGIN = os.environ.get('ADMIN_LOGIN', '')
 ADMIN_SHA = os.environ.get('ADMIN_PASS_SHA256', '')
+# Второй вход – СВЕРХ админ: «соль:хеш» (hex), PBKDF2-SHA256, 200 000 повторов; пусто – входа нет
+SVERH_LOGIN = os.environ.get('SVERH_LOGIN', '')
+SVERH_HASH = os.environ.get('SVERH_PASS_PBKDF2', '')
 STAGES = ('новая', 'в работе', 'выполнена', 'отказ')
 TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
 CHATS = [c for c in os.environ.get('TELEGRAM_CHAT_IDS', '').replace(',', ' ').split() if c]
@@ -140,7 +143,13 @@ class H(BaseHTTPRequestHandler):
             login, pw = json.loads(base64.b64decode(self.headers.get('X-Admin-Auth', '')))
             a = hmac.compare_digest(login.encode(), ADMIN_LOGIN.encode())
             b = hmac.compare_digest(hashlib.sha256(pw.encode()).hexdigest(), ADMIN_SHA)
-            return bool(ADMIN_LOGIN and ADMIN_SHA and a and b)
+            if ADMIN_LOGIN and ADMIN_SHA and a and b:
+                return True
+            if not (SVERH_LOGIN and SVERH_HASH and hmac.compare_digest(login.encode(), SVERH_LOGIN.encode())):
+                return False
+            salt, want = SVERH_HASH.split(':')
+            got = hashlib.pbkdf2_hmac('sha256', pw.encode(), bytes.fromhex(salt), 200_000).hex()
+            return hmac.compare_digest(got, want)
         except Exception:
             return False
 
