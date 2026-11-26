@@ -1,0 +1,1 @@
+var e=`/`.replace(/\/$/,``);function t(t){return!t||/^(https?:|tel:|mailto:|#|data:)/.test(t)||e&&t.startsWith(e+`/`)?t:e+(t.startsWith(`/`)?t:`/`+t)}export{t};

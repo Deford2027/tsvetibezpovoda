@@ -1,0 +1,1 @@
+var e=4e3,t=`Доставка ежедневно с 10:00 до 00:00`;function n(e,t){return t||e>=4e3?0:null}var r=Array.from({length:14},(e,t)=>{let n=10+t;return`${n}:00–${String((n+1)%24).padStart(2,`0`)}:00`});export{n as i,t as n,r,e as t};
